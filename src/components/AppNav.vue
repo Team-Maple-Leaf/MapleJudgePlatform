@@ -10,32 +10,28 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn icon>
-      <v-img :src="logo" />
-    </v-btn>
+    <v-btn flat>문제보기</v-btn>
+    <v-btn flat>결과</v-btn>
 
-    <v-btn icon>
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-
-    <v-btn icon>
-      <v-icon>mdi-dots-vertical</v-icon>
-    </v-btn>
+    <router-link v-if="isDevMode" to="/problemset">Problem Set</router-link>
+    <router-link v-if="isDevMode" to="/problem/1000">Detail</router-link>
+    <router-link v-if="isDevMode" to="/submit/1000">Submit</router-link>
+    <router-link v-if="isDevMode" to="/result/1000">Result</router-link>
   </v-app-bar>
 </template>
 
 <script lang="ts">
+import { computed } from "vue";
+
 export default {
   props: {
     title: String,
     logo: String,
   },
   setup() {
-    return {};
+    const isDevMode = computed(() => import.meta.env.MODE === "development");
+
+    return { isDevMode };
   },
 };
 </script>
