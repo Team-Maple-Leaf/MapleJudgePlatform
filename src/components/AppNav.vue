@@ -1,8 +1,8 @@
 <template>
   <v-app-bar color="bg-amber-darken-1">
-    <v-hover>
-      <v-img class="bg-white" :aspect-ratio="1" :src="logo"></v-img>
-    </v-hover>
+    <v-btn icon>
+      <v-img :src="logo"></v-img>
+    </v-btn>
 
     <v-app-bar-title>{{ title }}</v-app-bar-title>
 
@@ -23,9 +23,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
+export default {
   props: {
     title: String,
     logo: String,
@@ -33,7 +31,7 @@ export default defineComponent({
   setup() {
     return {};
   },
-});
+};
 </script>
 
 <style scoped></style>

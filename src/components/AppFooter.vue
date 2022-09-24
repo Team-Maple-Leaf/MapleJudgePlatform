@@ -13,13 +13,16 @@
     <v-divider></v-divider>
 
     <div>
-      {{ new Date().getFullYear() }} — <strong>Team - Maple-Leaf</strong>
+      {{ new Date().getFullYear() }} — <strong>{{ teamName }}</strong>
     </div>
   </v-footer>
 </template>
 
 <script lang="ts">
 export default {
+  props: {
+    teamName: String,
+  },
   setup() {
     const icons: string[] = ["mdi-github", "mdi-email"];
 

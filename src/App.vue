@@ -8,7 +8,7 @@
       </v-container>
     </v-main>
 
-    <app-footer></app-footer>
+    <app-footer team-name="Team - Maple-Leaf"></app-footer>
   </v-app>
 </template>
 
