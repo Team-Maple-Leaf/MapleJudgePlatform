@@ -1,12 +1,18 @@
 <template>
   <v-app-bar color="bg-amber-darken-1">
-    <v-btn icon>
-      <v-img :src="logo"></v-img>
-    </v-btn>
+    <v-hover>
+      <router-link to="/">
+        <img :src="logo" />
+      </router-link>
+    </v-hover>
 
     <v-app-bar-title>{{ title }}</v-app-bar-title>
 
     <v-spacer></v-spacer>
+
+    <v-btn icon>
+      <v-img :src="logo" />
+    </v-btn>
 
     <v-btn icon>
       <v-icon>mdi-magnify</v-icon>
