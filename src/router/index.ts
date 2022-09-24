@@ -4,6 +4,7 @@ import NotFoundView from "@/pages/NotFoundView.vue";
 import ProblemDetailView from "@/pages/ProblemDetailView.vue";
 import ProblemSubmitView from "@/pages/ProblemSubmitView.vue";
 import ProblemResultView from "@/pages/ProblemResultView.vue";
+import InternalServerErrorView from "@/pages/InternalServerErrorView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,6 +38,11 @@ const router = createRouter({
       path: "/404",
       name: "NotFound",
       component: NotFoundView,
+    },
+    {
+      path: "/error",
+      name: "Error",
+      component: InternalServerErrorView,
     },
     {
       path: "/:pathMatch(.*)*",
