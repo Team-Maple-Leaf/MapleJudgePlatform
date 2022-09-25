@@ -3,7 +3,7 @@
     <app-nav title="단풍이파리" :logo="logoPath"></app-nav>
 
     <v-main>
-      <v-container fluid>
+      <v-container fill-height fluid>
         <router-view></router-view>
       </v-container>
     </v-main>

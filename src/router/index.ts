@@ -40,9 +40,10 @@ const router = createRouter({
       component: NotFoundView,
     },
     {
-      path: "/error",
+      path: "/error/:status",
       name: "Error",
       component: InternalServerErrorView,
+      props: true,
     },
     {
       path: "/:pathMatch(.*)*",
