@@ -40,13 +40,13 @@ export default {
     // todo: no를 이용해 서버에 문제 가져오기 질의
     ApiWrapper.get("/problem/" + no)
       .then((response) => (model.value = response))
-      .catch(async (error) => {
+      .catch((error) => {
         const status =
           typeof error === "number"
             ? "HTTP response code: " + error
             : (error as TypeError)?.message;
 
-        await router.push({
+        router.push({
           name: "Error",
           params: { status },
         });
