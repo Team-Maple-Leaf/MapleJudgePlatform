@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import ProblemSetView from "@/pages/ProblemSetView.vue";
 import NotFoundView from "@/pages/NotFoundView.vue";
-import ProblemDetailView from "@/pages/ProblemDetailView.vue";
-import ProblemSubmitView from "@/pages/ProblemSubmitView.vue";
-import ProblemResultView from "@/pages/ProblemResultView.vue";
 import InternalServerErrorView from "@/pages/InternalServerErrorView.vue";
 
 const router = createRouter({
@@ -17,22 +13,22 @@ const router = createRouter({
     {
       path: "/problemset",
       name: "ProblemSet",
-      component: () => ProblemSetView,
+      component: () => import("@/pages/ProblemSetView.vue"),
     },
     {
       path: "/problem/:no",
       name: "ProblemDetail",
-      component: () => ProblemDetailView,
+      component: () => import("@/pages/ProblemDetailView.vue"),
     },
     {
       path: "/submit/:no",
       name: "ProblemSubmit",
-      component: () => ProblemSubmitView,
+      component: () => import("@/pages/ProblemSubmitView.vue"),
     },
     {
       path: "/result/:no",
       name: "ProblemResult",
-      component: () => ProblemResultView,
+      component: () => import("@/pages/ProblemResultView.vue"),
     },
     {
       path: "/404",
