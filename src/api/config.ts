@@ -6,5 +6,5 @@ export const APISettings = {
   headers: new Headers({
     Accept: "application/json",
   }),
-  baseURL: "https://api.maple-leaf.dev/api/v1",
+  baseURL: "https://api.maple-leaf.dev/v1",
 };

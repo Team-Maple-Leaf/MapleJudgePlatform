@@ -34,12 +34,10 @@ export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const model = ref({});
     const no = route.params.no;
 
     // todo: no를 이용해 서버에 문제 가져오기 질의
-
-    const model = ref({});
-
     ApiWrapper.get("/problem/" + no)
       .then((response) => (model.value = response))
       .catch((error) => {
