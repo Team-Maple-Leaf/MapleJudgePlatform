@@ -21,6 +21,7 @@
 </template>
 
 <script lang="ts">
+import envMgr from "@/env";
 import { computed } from "vue";
 
 export default {
@@ -29,7 +30,7 @@ export default {
     logo: String,
   },
   setup() {
-    const isDevMode = computed(() => import.meta.env.MODE === "development");
+    const isDevMode = computed(() => envMgr.isDevMode);
 
     return { isDevMode };
   },
