@@ -1,24 +1,28 @@
-<!-- 
-  problem id located in the left side of the list
-  problem title located in the next line of the problem id
--->
 <template>
-  <v-container class="problem-search d-flex flex-row">
-    <v-btn-group class="mr-auto" app color="white" dense>
-      <v-btn class="ma-2 pa-2">전체</v-btn>
-      <v-btn class="ma-2 pa-2">출처</v-btn>
-      <v-btn class="ma-2 pa-2">분류</v-btn>
-    </v-btn-group>
-    <v-text-field
-      class="ma-2 pa-2 align-self-auto"
-      v-model="search"
-      placeholder="문제 제목"
-      single-line
-    />
-    <v-btn class="ma-2 align-self-auto">
-      <v-icon>mdi-magnify</v-icon>
-    </v-btn>
-  </v-container>
+  <v-row class="ma-0 pa-0">
+    <v-col cols="4" class="d-flex align-center mr-auto">
+      <v-row>
+        <v-btn-toggle v-model="idx" @click="goToProblem(idx)">
+          <v-btn class="mr-2 text-center rounded-lg">전체</v-btn>
+          <v-btn class="mr-2 text-center rounded-lg">출처</v-btn>
+          <v-btn class="mr-2 text-center rounded-lg">분류</v-btn>
+        </v-btn-toggle>
+      </v-row>
+    </v-col>
+    <v-col cols="3" />
+    <v-col cols="5" class="d-flex align-center">
+      <v-text-field
+        class="ma-2 mr-0"
+        variant="outlined"
+        v-model="search"
+        placeholder="문제 제목"
+        label="문제 검색"
+        hide-details
+        :append-inner-icon="'mdi-magnify'"
+        @click:append-inner="goToProblem(search)"
+      ></v-text-field>
+    </v-col>
+  </v-row>
   <div class="problem-table">
     <v-table>
       <thead>
@@ -80,8 +84,9 @@ for (let i = 1; i <= 10; i++) {
 }
 
 const search = ref("");
+const idx = ref(0);
 
-function goToProblem(problemId: number) {
+function goToProblem(problemId: any) {
   console.log(problemId);
 }
 </script>
@@ -89,11 +94,5 @@ function goToProblem(problemId: number) {
 <style scoped>
 .problem-title:hover {
   text-decoration: underline;
-}
-
-.search-btn:hover {
-  color: #3f51b5;
-  background: #dddee5;
-  border-radius: 5px;
 }
 </style>
