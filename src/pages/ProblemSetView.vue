@@ -19,7 +19,7 @@
         label="문제 검색"
         hide-details
         :append-inner-icon="'mdi-magnify'"
-        @click:append-inner="goToProblem(search)"
+        @click:append-inner="searchProblem(search)"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -86,8 +86,12 @@ for (let i = 1; i <= 10; i++) {
 const search = ref("");
 const idx = ref(0);
 
-function goToProblem(problemId: any) {
+function goToProblem(problemId: number) {
   console.log(problemId);
+}
+
+function searchProblem(search: string) {
+  console.log(search);
 }
 </script>
 
