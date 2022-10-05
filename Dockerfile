@@ -14,14 +14,18 @@ WORKDIR /app
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
 # install project dependencies
-RUN npm install
+RUN pnpm config set auto-install-peers true
+RUN pnpm config set strict-peer-dependencies false
+RUN pnpm i
 
 # Bundle app source
 COPY . .
 
 # build app for production with minification
-RUN npm run build
+RUN pnpm build
 
 
 # production stage
