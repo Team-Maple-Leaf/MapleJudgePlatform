@@ -10,13 +10,8 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn flat>문제보기</v-btn>
-    <v-btn flat>결과</v-btn>
-
-    <router-link v-if="isDevMode" to="/problemset">Problem Set</router-link>
-    <router-link v-if="isDevMode" to="/problem/1000">Detail</router-link>
-    <router-link v-if="isDevMode" to="/submit/1000">Submit</router-link>
-    <router-link v-if="isDevMode" to="/result/1000">Result</router-link>
+    <v-btn flat to="/problemset">문제보기</v-btn>
+    <v-btn flat to="/result">결과</v-btn>
   </v-app-bar>
 </template>
 

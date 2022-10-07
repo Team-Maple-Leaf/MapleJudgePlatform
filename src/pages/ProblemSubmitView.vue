@@ -6,7 +6,7 @@
 
         <h1>{{ $route.params }} 문제 제목</h1>
         <br />
-        <v-textarea @keydown.tab="canUseTab"></v-textarea>
+        <v-textarea></v-textarea>
 
         <v-btn class="text-center mr-2 left" @click="gotoResultPage">
           제출
@@ -16,17 +16,16 @@
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  setup() {
-    return {};
-  },
+<script setup lang="ts">
+import { useRoute, useRouter } from 'vue-router';
 
-  methods: {
-    canUseTab: function () {},
-    gotoResultPage: function () {},
-  },
-};
+const router = useRouter();
+const route = useRoute();
+const no = route.params.no;
+
+const gotoResultPage = () => {
+  router.push("/result/" + no);
+}
 </script>
 
 <style scoped></style>

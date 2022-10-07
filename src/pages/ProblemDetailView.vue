@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>A-B</p>
+    <v-btn :to="'/submit/' + problemNo">제출</v-btn>
+
+    <h1>문제번호: {{ problemNo }}</h1>
 
     <hr />
 
@@ -25,49 +27,39 @@
   </div>
 </template>
 
-<script lang="ts">
-import ApiWrapper from "@/api/resources/ApiWrapper";
-import { ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+<script setup lang="ts">
+import { useRoute } from "vue-router";
 
-export default {
-  setup() {
-    const router = useRouter();
-    const route = useRoute();
-    const model = ref({});
-    const no = route.params.no;
+const route = useRoute();
+const problemNo = route.params.no;
 
-    // todo: no를 이용해 서버에 문제 가져오기 질의
-    ApiWrapper.get("/problem/" + no)
-      .then((response) => (model.value = response))
-      .catch((error) => {
-        const status =
-          typeof error === "number"
-            ? "HTTP response code: " + error
-            : (error as TypeError)?.message;
+// todo: no를 이용해 서버에 문제 가져오기 질의
+// ApiWrapper.get("/problem/" + no)
+//   .then((response) => (model.value = response))
+//   .catch((error) => {
+//     const status =
+//       typeof error === "number"
+//         ? "HTTP response code: " + error
+//         : (error as TypeError)?.message;
 
-        router.push({
-          name: "Error",
-          params: { status },
-        });
-      });
+//     router.push({
+//       name: "Error",
+//       params: { status },
+//     });
+//   });
 
-    const items = [
-      {
-        input: {
-          title: "예제 입력 1",
-          value: "2 1",
-        },
-        output: {
-          title: "예제 출력 1",
-          value: "1",
-        },
-      },
-    ];
-
-    return { model, items };
+const items = [
+  {
+    input: {
+      title: "예제 입력 1",
+      value: "2 1",
+    },
+    output: {
+      title: "예제 출력 1",
+      value: "1",
+    },
   },
-};
+];
 </script>
 
 <style scoped></style>
