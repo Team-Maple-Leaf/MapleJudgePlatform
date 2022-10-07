@@ -21,32 +21,54 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
+## npm -> pnpm
+
+#### 1. [Install pnpm](https://pnpm.io/installation)
+
+```sh
+npm i -g pnpm
+```
+
+#### 2. Delete node_modules
+
+```sh
+npx npkill
+```
+
+#### 3. Install dependencies
+
+```sh
+pnpm i
+```
+
 ## Project Setup
 
 ```sh
-npm install
+pnpm i
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+pnpm dev
 ```
 
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-npm run build
+pnpm build
 ```
 
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-npm run test:unit
+pnpm test:unit
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
-npm run lint
+pnpm lint
 ```
+
+
