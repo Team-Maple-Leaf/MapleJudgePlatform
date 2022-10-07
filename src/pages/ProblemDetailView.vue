@@ -50,6 +50,7 @@ const problemNo = route.params.no;
 
 const items = [
   {
+    id: 0,
     input: {
       title: "예제 입력 1",
       value: "2 1",
