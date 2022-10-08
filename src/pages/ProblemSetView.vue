@@ -37,9 +37,9 @@
         <tr v-for="problem in problems" :key="problem.id">
           <td>{{ problem.id }}</td>
           <td>
-            <button class="problem-title" @click="goToProblem(problem.id)">
+            <v-btn flat class="problem-title" :to="'/problem/' + problem.id">
               {{ problem.title }}
-            </button>
+            </v-btn>
           </td>
           <td>{{ problem.outputDescription }}</td>
           <td>{{ problem.outputDescription }}</td>
@@ -96,7 +96,7 @@ function searchProblem(search: string) {
 </script>
 
 <style scoped>
-.problem-title:hover {
-  text-decoration: underline;
+.problem-title {
+  background-color: transparent;
 }
 </style>
