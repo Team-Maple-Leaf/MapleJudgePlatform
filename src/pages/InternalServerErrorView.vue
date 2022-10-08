@@ -7,29 +7,18 @@
     <h1 class="header">Internal Error</h1>
   </v-row>
 
-  <v-row v-if="isDevMode" align="center" justify="center">
+  <v-row v-if="envMgr.isDevMode" align="center" justify="center">
     <h2 class="body">{{ status }}</h2>
   </v-row>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import imageUrl from "@/assets/error.png";
 import envMgr from "@/env";
-import { computed } from "vue";
 
-export default {
-  props: {
-    status: Object,
-  },
-  setup() {
-    const isDevMode = computed(() => envMgr.isDevMode);
-
-    return {
-      isDevMode,
-      imageUrl,
-    };
-  },
-};
+defineProps({
+  status: Object,
+});
 </script>
 
 <style>

@@ -15,21 +15,11 @@
   </v-app-bar>
 </template>
 
-<script lang="ts">
-import envMgr from "@/env";
-import { computed } from "vue";
-
-export default {
-  props: {
-    title: String,
-    logo: String,
-  },
-  setup() {
-    const isDevMode = computed(() => envMgr.isDevMode);
-
-    return { isDevMode };
-  },
-};
+<script setup lang="ts">
+defineProps({
+  title: String,
+  logo: String,
+});
 </script>
 
 <style scoped></style>

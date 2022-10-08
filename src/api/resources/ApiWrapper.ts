@@ -28,14 +28,14 @@ export default {
    * @param data POST Body.
    * @returns Response Body data with json.
    */
-  async post(ep: String, data: any) {
+  async post(ep: String, data: Object) {
     APISettings.headers.set("Content-Type", "application/json");
     APISettings.headers.set("Authorization", "Bearer " + APISettings.token);
 
     const response = await fetch(APISettings.baseURL + ep, {
       method: "POST",
       headers: APISettings.headers,
-      body: data,
+      body: JSON.stringify(data),
     });
 
     if (response.status != 201) {
