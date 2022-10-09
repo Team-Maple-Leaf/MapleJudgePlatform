@@ -27,7 +27,12 @@ const router = createRouter({
     },
     {
       path: "/result/:no",
-      name: "ProblemResult",
+      name: "ProblemResultWithNo",
+      component: () => import("@/pages/ProblemResultView.vue"),
+    },
+    {
+      path: "/result",
+      name: "ProblemResultAll",
       component: () => import("@/pages/ProblemResultView.vue"),
     },
     {
