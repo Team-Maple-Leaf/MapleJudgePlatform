@@ -5,19 +5,17 @@
       <v-form ref="form" @submit.prevent="gotoResultPage">
         <v-select
           class="selectBox"
-          v-model="programmingLanguage"
+          v-model="inputProgrammingLanguage"
           label="PL"
           :items="pl"
         ></v-select>
 
         <v-textarea
-          v-model="Code"
+          v-model="inputWrittenCode"
           label="코드를 작성해 주세요."
           rows="13"
         ></v-textarea>
-        <v-btn width="100px" style="margin-bottom: 30px" type="submit"
-          >제출</v-btn
-        >
+        <v-btn width="100px" style="margin-bottom: 30px" type="submit">제출</v-btn>
       </v-form>
     </v-container>
   </div>
@@ -33,8 +31,8 @@ const route = useRoute();
 const problemNo = route.params.no;
 const pl = ["c", "java"];
 
-const programmingLanguage = ref(String(""));
-const Code = ref(String(""));
+const inputProgrammingLanguage = ref(String(""));
+const inputWrittenCode = ref(String(""));
 
 const gotoResultPage = () => {
   router.push("/result/" + problemNo);
