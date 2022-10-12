@@ -32,7 +32,6 @@ const user = shallowRef(UserInfo.default());
 const emitter: Emitter<Record<EventType, any>> = injectStrict("emitter");
 
 const onLogout = () => {
-  alert("logout");
   user.value = UserInfo.default();
 };
 
@@ -41,7 +40,6 @@ watchEffect(async () => {
 });
 
 emitter.on("onUserChanged", (info: UserInfo) => {
-  alert("login");
   user.value = info;
 });
 </script>
