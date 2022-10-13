@@ -37,7 +37,12 @@
         <tr v-for="problem in problems" :key="problem.id">
           <td>{{ problem.id }}</td>
           <td>
-            <v-btn flat class="problem-title" :to="'/problem/' + problem.id">
+            <v-btn
+              flat
+              variant="plain"
+              class="problem-title"
+              :to="'/problem/' + problem.id"
+            >
               {{ problem.title }}
             </v-btn>
           </td>

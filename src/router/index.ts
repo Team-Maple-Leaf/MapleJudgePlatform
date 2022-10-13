@@ -36,6 +36,11 @@ const router = createRouter({
       component: () => import("@/pages/ProblemResultView.vue"),
     },
     {
+      path: "/signin",
+      name: "ThirdPartySignIn",
+      component: () => import("@/pages/ThirdPartySignIn.vue"),
+    },
+    {
       path: "/404",
       name: "NotFound",
       component: NotFoundView,
