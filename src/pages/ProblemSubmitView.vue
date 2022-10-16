@@ -44,7 +44,7 @@ const form = ref();
 
 function gotoResultPage() {
   const promise = form.value.validate();
-  promise.then((result) => {
+  promise.then((result: any) => {
     if (result.valid === true) {
       router.push("/result/" + problemNo);
     } else {
