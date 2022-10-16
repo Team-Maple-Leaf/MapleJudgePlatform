@@ -2,20 +2,22 @@
   <div class="submitPage">
     <v-container>
       <h2>{{ problemNo }}</h2>
-      <v-form ref="form" @submit.prevent="gotoResultPage">
+      <v-form ref="form" @submit.prevent="gotoResultPage" lazy-validation>
         <v-select
+          label="언어 선택"
           class="selectBox"
-          v-model="selectedPL"
-          label="PL"
-          :items="PL"
+          v-model="selectedLanguage"
+          :items="languageList"
         ></v-select>
 
         <v-textarea
-          v-model="userWrittenCode"
-          label="코드를 작성해 주세요."
           rows="13"
+          v-model="textareaCode"
+          label="코드를 작성해 주세요."
+          :rules="checkTextareaCode"
+          required
         ></v-textarea>
-        <v-btn class=“mb-30” width="100px" type="submit">제출</v-btn>
+        <v-btn class="“mb-30”" width="100px" type="submit">제출</v-btn>
       </v-form>
     </v-container>
   </div>
@@ -29,14 +31,27 @@ const router = useRouter();
 const route = useRoute();
 
 const problemNo = route.params.no;
-const PL = ["c", "java"];
+const languageList = ["c", "java"];
 
-const selectedPL = ref(String(""));
-const userWrittenCode = ref(String(""));
+const selectedLanguage = ref(languageList[0] as string);
+const textareaCode = ref("");
 
-const gotoResultPage = () => {
-  router.push("/result/" + problemNo);
-};
+const checkTextareaCode = ref([
+  (v: any) => !!v || "코드는 필수 입력사항입니다.",
+]);
+
+const form = ref();
+
+function gotoResultPage() {
+  const promise = form.value.validate();
+  promise.then((result) => {
+    if (result.valid === true) {
+      router.push("/result/" + problemNo);
+    } else {
+      return;
+    }
+  });
+}
 </script>
 
 <style scoped>
