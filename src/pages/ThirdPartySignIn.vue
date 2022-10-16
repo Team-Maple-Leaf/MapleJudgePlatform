@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserInfo } from "@/UserInfo";
+import { UserInfo } from "@/structs/UserInfo";
 import { injectStrict } from "@/utils/injecter";
 import type { Emitter, EventType } from "mitt";
 import { onMounted } from "vue";

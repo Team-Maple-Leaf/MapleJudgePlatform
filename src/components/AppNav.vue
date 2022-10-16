@@ -41,7 +41,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserInfo } from "@/UserInfo";
+import { UserInfo } from "@/structs/UserInfo";
 import { googleLogout } from "vue3-google-login";
 
 const emit = defineEmits<{

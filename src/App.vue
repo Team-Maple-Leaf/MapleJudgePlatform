@@ -23,7 +23,7 @@ import { ref, shallowRef, watchEffect } from "vue";
 import { RouterView } from "vue-router";
 import AppFooter from "./components/AppFooter.vue";
 import AppNav from "./components/AppNav.vue";
-import { UserInfo } from "./UserInfo";
+import { UserInfo } from "./structs/UserInfo";
 import { injectStrict } from "./utils/injecter";
 
 const logoPath = ref("");
