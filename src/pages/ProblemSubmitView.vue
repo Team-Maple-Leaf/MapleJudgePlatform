@@ -31,9 +31,9 @@ const router = useRouter();
 const route = useRoute();
 
 const problemNo = route.params.no;
-const languageList = ["c", "java"];
+const languageList: string[] = ["c", "java"];
 
-const selectedLanguage = ref(languageList[0] as string);
+const selectedLanguage = ref(languageList[0]);
 const textareaCode = ref("");
 
 const checkTextareaCode = ref([
@@ -42,16 +42,13 @@ const checkTextareaCode = ref([
 
 const form = ref();
 
-function gotoResultPage() {
-  const promise = form.value.validate();
-  promise.then((result: any) => {
-    if (result.valid === true) {
-      router.push("/result/" + problemNo);
-    } else {
-      return;
-    }
-  });
-}
+const gotoResultPage = async() => {
+  const result = await form.value.validate();
+  
+  if (result.valid) {
+    router.push("/result/" + problemNo);
+  }
+};
 </script>
 
 <style scoped>
