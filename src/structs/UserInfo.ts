@@ -3,20 +3,64 @@
  * https://developers.google.com/identity/gsi/web/reference/html-reference#server-side
  */
 export class UserInfo {
+  /**
+   * The JWT's issuer
+   */
   iss?: string;
-  nbf?: number;
+
+  /**
+   * Client ID
+   */
   aud?: string;
+
+  /**
+   * 구글 계정 unique ID
+   */
   sub?: string;
-  hd?: string;
+
+  /**
+   * 사용자 이메일 주소
+   */
   email?: string;
+
+  /**
+   * true, if Google has verified the email address
+   */
   email_verified?: boolean;
-  azp?: string;
+
+  /**
+   * 사용자 전체 이름
+   */
   name?: string;
+
+  /**
+   * 사용자 프로필 사진 주소
+   */
   picture?: string;
+
+  /**
+   * 사용자 이름
+   */
   given_name?: string;
+
+  /**
+   * 사용자 성
+   */
   family_name?: string;
+
+  /**
+   * Unix timestamp of the assertion's creation time
+   */
   iat?: number;
+
+  /**
+   * Unix timestamp of the assertion's expiration time
+   */
   exp?: number;
+
+  nbf?: number;
+  hd?: string;
+  azp?: string;
   jti?: string;
 
   constructor(data: any) {
@@ -40,10 +84,18 @@ export class UserInfo {
     if (data.jti !== undefined) this.jti = data.jti;
   }
 
+  /**
+   * 이 객체가 현재 빈 값인지 확인합니다.
+   * @returns 객체가 리셋된 경우 true, 외 false
+   */
   isEmpty(): boolean {
-    return this.email === undefined || this.email === "";
+    return this.sub === undefined || this.sub === "";
   }
 
+  /**
+   * 빈 사용자 정보 객체를 생성하여 빈환합니다.
+   * @returns empty UserInfo.
+   */
   static default(): UserInfo {
     return new UserInfo({});
   }
