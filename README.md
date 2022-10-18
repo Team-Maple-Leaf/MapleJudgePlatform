@@ -1,74 +1,47 @@
-# MapleJudgePlatform
+# 단풍이파리
 
-This template should help get you started developing with Vue 3 in Vite.
+<div align="center">
+  <p>
+     <img 
+     src="https://avatars.githubusercontent.com/u/113783233?s=200&v=4" 
+     alt="Logo"
+     width=100px
+     height=100px
+     />
+  </p>
+  
+  <p>
+    온라인 저지 플랫폼
+  </p>
 
-## Recommended IDE Setup
+  <p>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+[![Docker Build CI](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/actions/workflows/docker-build.yml/badge.svg)](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/actions/workflows/docker-build.yml) [![Node Build CI](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/actions/workflows/build.yml/badge.svg)](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/actions/workflows/build.yml) [![GitHub license](https://img.shields.io/github/license/Team-Maple-Leaf/MapleJudgePlatform)](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/blob/main/License) [![GitHub issues](https://img.shields.io/github/issues/Team-Maple-Leaf/MapleJudgePlatform)](https://github.com/Team-Maple-Leaf/MapleJudgePlatform/issues)
 
-## Type Support for `.vue` Imports in TS
+  </p>
+  
+  <img
+  src="./public/image/main-screen.png"
+  alt="main-screen"
+  />
+  
+</div>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+프로그래밍 문제를 풀고 코드를 제출하여 온라인에서 체점 받을 수 있습니다.
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## npm -> pnpm
-
-#### 1. [Install pnpm](https://pnpm.io/installation)
-
-```sh
-npm i -g pnpm
-```
-
-#### 2. Delete node_modules
-
-```sh
-npx npkill
-```
-
-#### 3. Install dependencies
-
-```sh
-pnpm i
-```
+## 
 
 ## Project Setup
-
 ```sh
 pnpm i
 ```
 
 ### Compile and Hot-Reload for Development
-
 ```sh
 pnpm dev
 ```
 
 ### Type-Check, Compile and Minify for Production
-
 ```sh
 pnpm build
 ```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-pnpm test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
-
-
