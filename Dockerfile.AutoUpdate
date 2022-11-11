@@ -20,7 +20,8 @@ RUN git clone \
 
 RUN pnpm config set auto-install-peers true
 RUN pnpm config set strict-peer-dependencies false
-RUN pnpm i npm-run-all
+
+RUN npm i npm-run-all
 
 EXPOSE 443
 
