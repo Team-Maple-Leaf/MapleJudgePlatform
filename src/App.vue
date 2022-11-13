@@ -1,11 +1,6 @@
 <template>
   <v-app>
-    <app-nav
-      title="단풍이파리"
-      :logo="logoPath"
-      v-model:user="user"
-      @on-logout="onLogout"
-    ></app-nav>
+    <app-nav title="단풍이파리" :logo="logoPath" :user="user"></app-nav>
 
     <v-main>
       <v-container fill-height fluid>
@@ -19,28 +14,38 @@
 
 <script setup lang="ts">
 import type { Emitter, EventType } from "mitt";
-import { ref, shallowRef, watchEffect } from "vue";
+import type { UserInfo } from "./structs/UserInfo";
+import { onMounted, reactive, ref, watchEffect } from "vue";
 import { RouterView } from "vue-router";
 import AppFooter from "./components/AppFooter.vue";
 import AppNav from "./components/AppNav.vue";
-import { UserInfo } from "./structs/UserInfo";
 import { injectStrict } from "./utils/injecter";
+import { userUserStore } from "./stores/user.store";
+import { SignInRequest } from "./structs/SignInRequest";
+import { userDetail } from "./structs/userDetail";
 
 const logoPath = ref("");
-const user = shallowRef(UserInfo.default());
-
+const user = reactive(userDetail.Empty());
+const userStore = userUserStore();
 const emitter: Emitter<Record<EventType, any>> = injectStrict("emitter");
-
-const onLogout = () => {
-  user.value = UserInfo.default();
-};
 
 watchEffect(async () => {
   logoPath.value = (await import("@/assets/logo.png")).default;
 });
 
-emitter.on("onUserChanged", (info: UserInfo) => {
-  user.value = info;
+onMounted(async () => {
+  userStore.load();
+  user.update(userStore.user);
+});
+
+emitter.on("onUserChanged", async (info: UserInfo) => {
+  if (info !== null && info !== undefined) {
+    await userStore.signIn(new SignInRequest(info));
+  } else {
+    await userStore.signOut();
+  }
+
+  user.update(userStore.user);
 });
 </script>
 

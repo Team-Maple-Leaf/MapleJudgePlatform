@@ -13,11 +13,12 @@ import "vuetify/styles";
 
 loadFonts();
 
+const pinia = createPinia();
 const emitter = mitt();
 const app = createApp(App);
 
 app.provide("emitter", emitter);
-app.use(createPinia());
+app.use(pinia);
 app.use(vuetify);
 app.use(router);
 app.use(vue3GoogleLogin, {

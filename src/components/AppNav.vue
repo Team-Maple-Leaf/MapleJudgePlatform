@@ -12,7 +12,7 @@
 
     <v-btn flat to="/problemset"> 문제보기 </v-btn>
     <v-btn flat to="/result"> 결과 </v-btn>
-    <v-btn flat to="/signin" v-if="user.isEmpty()"> 로그인 </v-btn>
+    <v-btn flat to="/signin" v-if="showLogin"> 로그인 </v-btn>
     <v-menu v-else bottom min-width="200px" rounded offset-y>
       <template v-slot:activator="{ props }">
         <v-btn icon v-bind="props">
@@ -32,7 +32,9 @@
               {{ user.email }}
             </p>
             <v-divider class="my-3"></v-divider>
-            <v-btn rounded variant="text" @click="onLogout"> Logout </v-btn>
+            <v-btn rounded variant="text" @click="handleSignOut">
+              Logout
+            </v-btn>
           </div>
         </v-card-text>
       </v-card>
@@ -41,23 +43,28 @@
 </template>
 
 <script setup lang="ts">
-import { UserInfo } from "@/structs/UserInfo";
+import type { userDetail } from "@/structs/userDetail";
+import type { Emitter, EventType } from "mitt";
+import { injectStrict } from "@/utils/injecter";
 import { googleLogout } from "vue3-google-login";
+import { computed, type PropType } from "vue";
 
-const emit = defineEmits<{
-  (e: "onLogout"): void;
-}>();
-
-const onLogout = () => {
-  googleLogout();
-  emit("onLogout");
-};
-
-defineProps({
+const props = defineProps({
   title: String,
   logo: String,
-  user: UserInfo,
+  user: {
+    type: Object as PropType<userDetail>,
+    required: true,
+  },
 });
+
+const showLogin = computed(() => !props.user.isValid());
+const emitter: Emitter<Record<EventType, any>> = injectStrict("emitter");
+
+const handleSignOut = () => {
+  googleLogout();
+  emitter.emit("onUserChanged", null);
+};
 </script>
 
 <style scoped></style>
