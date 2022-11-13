@@ -1,0 +1,28 @@
+FROM nginx:stable-alpine
+
+# make the 'app' folder the current working directory
+WORKDIR /app
+
+RUN apk add nodejs-lts && \
+    apk add npm && \
+    apk add git && \
+    apk add python3 && \
+    apk add make && \
+    apk add gcc && \
+    apk add g++
+
+RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+
+RUN git clone \
+      -b release/main \
+      https://github.com/Team-Maple-Leaf/MapleJudgePlatform.git \
+      .
+
+RUN pnpm config set auto-install-peers true
+RUN pnpm config set strict-peer-dependencies false
+
+RUN npm i npm-run-all
+
+EXPOSE 443
+
+ENTRYPOINT ["/app/start.sh"]
