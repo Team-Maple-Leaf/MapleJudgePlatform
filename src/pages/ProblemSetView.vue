@@ -5,10 +5,10 @@
         <v-btn-toggle v-model="idx" @click="goToProblem(idx)">
           <v-btn class="mr-2 text-center rounded-lg">전체</v-btn>
           <v-btn class="mr-2 text-center rounded-lg">출처</v-btn>
-          <v-btn class="mr-2 text-center rounded-lg">분류</v-btn>
         </v-btn-toggle>
       </v-row>
     </v-col>
+    <!--
     <v-col cols="3" />
     <v-col cols="5" class="d-flex align-center">
       <v-text-field
@@ -22,6 +22,7 @@
         @click:append-inner="searchProblem(search)"
       ></v-text-field>
     </v-col>
+  -->
   </v-row>
   <div class="problem-table">
     <v-table>
