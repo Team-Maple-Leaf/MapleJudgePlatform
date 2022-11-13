@@ -21,7 +21,7 @@
   </p>
   
   <img
-  src="./public/image/main-screen.png"
+  src="./docs/main-screen.png"
   alt="main-screen"
   />
   
@@ -29,19 +29,22 @@
 
 프로그래밍 문제를 풀고 코드를 제출하여 온라인에서 채점 받을 수 있습니다.
 
-## 
+##
 
 ## Project Setup
+
 ```sh
 pnpm i
 ```
 
 ### Compile and Hot-Reload for Development
+
 ```sh
 pnpm dev
 ```
 
 ### Type-Check, Compile and Minify for Production
+
 ```sh
 pnpm build
 ```

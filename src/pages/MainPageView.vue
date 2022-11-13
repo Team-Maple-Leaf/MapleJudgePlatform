@@ -37,7 +37,7 @@
     <v-responsive class="align-center mx-auto" height="100%" width="100%">
       <h1>Architecture</h1>
       <v-col />
-      <v-img src="../../public/image/sub-screen.png" :aspect-ratio="12 / 5" />
+      <v-img :src="architectureUrl" :aspect-ratio="12 / 5" />
       <v-col /><v-col />
     </v-responsive>
   </v-container>
@@ -116,25 +116,48 @@
 </template>
 
 <script setup lang="ts">
+import architectureUrl from "@/assets/mainPageView/sub-screen.png";
+import pageUrl from "@/assets/mainPageView/sub-screen.png";
+import vueUrl from "@/assets/mainPageView/vuejs-logo.png";
+import vercelUrl from "@/assets/mainPageView/vercel-logo.png";
+import tsUrl from "@/assets/mainPageView/ts-logo.png";
+import pnpmUrl from "@/assets/mainPageView/pnpm-logo.png";
+import piniaUrl from "@/assets/mainPageView/pinia-logo.svg";
+import nodejsUrl from "@/assets/mainPageView/nodejs-logo.png";
+import springbootUrl from "@/assets/mainPageView/spring-boot-logo.png";
+import springSecurityUrl from "@/assets/mainPageView/spring-security-logo.png";
+import jpaUrl from "@/assets/mainPageView/spring-jpa-logo.png";
+import jwtUrl from "@/assets/mainPageView/jwt-logo.png";
+import gradleUrl from "@/assets/mainPageView/gradle-logo.png";
+import swaggerUrl from "@/assets/mainPageView/swagger-logo.png";
+import rustUrl from "@/assets/mainPageView/rust-logo-crab.png";
+import mysqlUrl from "@/assets/mainPageView/mysql-logo.png";
+import redisUrl from "@/assets/mainPageView/redis-logo.png";
+import githubUrl from "@/assets/mainPageView/github-logo.png";
+import githubActionsUrl from "@/assets/mainPageView/github-actions-logo.png";
+import dockerUrl from "@/assets/mainPageView/docker-logo.png";
+import dockerComposeUrl from "@/assets/mainPageView/docker-compose-logo.png";
+import teamcityUrl from "@/assets/mainPageView/teamcity-logo.png";
+
 const pages = [
   {
     id: 0,
-    src: "../../public/image/sub-screen.png",
+    src: pageUrl,
     content: "다양한 종류의 알고리즘 문제를 풀어볼 수 있습니다.",
   },
   {
     id: 1,
-    src: "../../public/image/sub-screen.png",
+    src: pageUrl,
     content: "알고리즘 문제를 풀어 정답 여부를 판단할 수 있습니다.",
   },
   {
     id: 2,
-    src: "../../public/image/sub-screen.png",
+    src: pageUrl,
     content: "정답이 아닐 때 정답이 아닌 이유를 보여줍니다.",
   },
   {
     id: 3,
-    src: "../../public/image/sub-screen.png",
+    src: pageUrl,
     content: "개인 계정에서 자신이 풀어본 문제를 확인할 수 있습니다.",
   },
 ];
@@ -142,92 +165,92 @@ const pages = [
 const clientImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/vuejs-logo.png",
+    src: vueUrl,
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/vercel-logo.png",
+    src: vercelUrl,
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/ts-logo.png",
+    src: tsUrl,
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/pnpm-logo.png",
+    src: pnpmUrl,
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/pinia-logo.svg",
+    src: piniaUrl,
   },
   {
     id: 5,
-    src: "../../public/image/techStackLogo/nodejs-logo.png",
+    src: nodejsUrl,
   },
 ];
 
 const serverImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/spring-boot-logo.png",
+    src: springbootUrl,
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/spring-security-logo.png",
+    src: springSecurityUrl,
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/spring-jpa-logo.png",
+    src: jpaUrl,
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/jwt-logo.png",
+    src: jwtUrl,
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/gradle-logo.png",
+    src: gradleUrl,
   },
   {
     id: 5,
-    src: "../../public/image/techStackLogo/swagger-logo.png",
+    src: swaggerUrl,
   },
   {
     id: 6,
-    src: "../../public/image/techStackLogo/rust-logo-crab.png",
+    src: rustUrl,
   },
 ];
 
 const dbImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/mysql-logo.png",
+    src: mysqlUrl,
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/redis-logo.png",
+    src: redisUrl,
   },
 ];
 
 const infraImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/github-logo.png",
+    src: githubUrl,
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/github-actions-logo.png",
+    src: githubActionsUrl,
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/docker-logo.png",
+    src: dockerUrl,
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/docker-compose-logo.png",
+    src: dockerComposeUrl,
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/teamcity-logo.png",
+    src: teamcityUrl,
   },
 ];
 
