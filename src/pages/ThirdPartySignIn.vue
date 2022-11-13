@@ -15,6 +15,7 @@
 </template>
 
 <script setup lang="ts">
+import router from "@/router";
 import { UserInfo } from "@/structs/UserInfo";
 import { injectStrict } from "@/utils/injecter";
 import type { Emitter, EventType } from "mitt";
@@ -26,6 +27,8 @@ const emitter: Emitter<Record<EventType, any>> = injectStrict("emitter");
 const handleCredentialResponseAsync = async (response: any) => {
   const userData = new UserInfo(decodeCredential(response.credential));
   emitter.emit("onUserChanged", userData);
+
+  router.push("/");
 };
 
 onMounted(() => {
