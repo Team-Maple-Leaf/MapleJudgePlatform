@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      redirect: "/main",
+      component: () => import("@/pages/MainPageView.vue"),
     },
     {
       path: "/problemset",
@@ -39,11 +39,6 @@ const router = createRouter({
       path: "/signin",
       name: "ThirdPartySignIn",
       component: () => import("@/pages/ThirdPartySignIn.vue"),
-    },
-    {
-      path: "/main",
-      name: "MainPage",
-      component: () => import("@/pages/MainPageView.vue"),
     },
     {
       path: "/404",
