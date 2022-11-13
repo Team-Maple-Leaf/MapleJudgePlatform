@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      redirect: "/problemset",
+      component: () => import("@/pages/MainPageView.vue"),
     },
     {
       path: "/problemset",
