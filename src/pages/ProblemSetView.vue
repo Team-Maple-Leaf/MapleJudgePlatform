@@ -2,10 +2,7 @@
   <v-row class="ma-0 pa-0">
     <v-col cols="4" class="d-flex align-center mr-auto">
       <v-row>
-        <v-btn-toggle v-model="idx" @click="goToProblem(idx)">
-          <v-btn class="mr-2 text-center rounded-lg">전체</v-btn>
-          <v-btn class="mr-2 text-center rounded-lg">출처</v-btn>
-        </v-btn-toggle>
+        <v-btn variant="tonal">전체</v-btn>
       </v-row>
     </v-col>
     <!--
@@ -35,20 +32,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="problem in problems" :key="problem.id">
-          <td>{{ problem.id }}</td>
+        <tr v-for="problem in problems" :key="problem.no">
+          <td>{{ problem.no }}</td>
           <td>
             <v-btn
               flat
               variant="plain"
               class="problem-title"
-              :to="'/problem/' + problem.id"
+              :to="'/problem/' + problem.no"
             >
               {{ problem.title }}
             </v-btn>
           </td>
-          <td>{{ problem.outputDescription }}</td>
-          <td>{{ problem.outputDescription }}</td>
+          <td>{{ problem.reference ?? "Not Set" }}</td>
+          <td>{{ problem.category ?? "Not Set" }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -56,50 +53,12 @@
 </template>
 
 <script setup lang="ts">
+import type { Problem } from "@/structs/Problem";
+import { getAsync } from "@/utils/api";
 import { ref } from "vue";
 
-const problems = ref([
-  {
-    examples: [
-      {
-        input: "string",
-        output: "Hello World!\n",
-      },
-    ],
-    id: 0,
-    inputDescription: "이 문제는 입력이 없습니다.",
-    outputDescription: "Hello World!",
-    problemDescription: "Hello World를 출력해보자",
-    title: "Hello World 출력",
-  },
-]);
-
-for (let i = 1; i <= 10; i++) {
-  problems.value.push({
-    examples: [
-      {
-        input: "string",
-        output: "Hello World!\n",
-      },
-    ],
-    id: i,
-    inputDescription: "이 문제는 입력이 없습니다.",
-    outputDescription: "Hello World!",
-    problemDescription: "Hello World를 출력해보자",
-    title: "Hello World 출력: " + i,
-  });
-}
-
-const search = ref("");
-const idx = ref(0);
-
-function goToProblem(problemId: number) {
-  console.log(problemId);
-}
-
-function searchProblem(search: string) {
-  console.log(search);
-}
+const receivedProblems = await getAsync<any>("/problemset");
+const problems = ref(receivedProblems.data as Array<Problem>);
 </script>
 
 <style scoped>

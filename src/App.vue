@@ -3,9 +3,11 @@
     <app-nav title="단풍이파리" :logo="logoPath" :user="user"></app-nav>
 
     <v-main>
-      <v-container fill-height fluid>
-        <router-view :key="$route.path"></router-view>
-      </v-container>
+      <suspense>
+        <v-container fill-height fluid>
+          <router-view :key="$route.path"></router-view>
+        </v-container>
+      </suspense>
     </v-main>
 
     <app-footer team-name="Team - Maple-Leaf"></app-footer>

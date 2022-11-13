@@ -5,11 +5,11 @@ import { SignInRequest } from "./SignInRequest";
  * 캐싱으로 갖는 User의 세부 정보.
  */
 export class userDetail {
-  maple: string | undefined;
-  name: string | undefined;
-  picture: string | undefined;
-  email: string | undefined;
-  jwt: string | undefined;
+  public maple: string | undefined;
+  public name: string | undefined;
+  public picture: string | undefined;
+  public email: string | undefined;
+  public jwt: string | undefined;
 
   constructor(signInRequest: SignInRequest, jwt: string) {
     this.maple = signInRequest.maple;

@@ -5,11 +5,11 @@ import type { UserInfo } from "./UserInfo";
  * Sign In Request Payload.
  */
 export class SignInRequest {
-  maple: string | undefined;
-  name: string | undefined;
-  picture: string | undefined;
-  email: string | undefined;
-  leaf: string | undefined;
+  public maple: string | undefined;
+  public name: string | undefined;
+  public picture: string | undefined;
+  public email: string | undefined;
+  public leaf: string | undefined;
 
   constructor(userInfo: UserInfo) {
     this.maple = userInfo.sub;
