@@ -1,7 +1,6 @@
-import { baseUrl } from "@/utils/api";
+import { getAsync, postAsync } from "@/utils/api";
 import { defineStore } from "pinia";
 import { userDetail } from "../structs/userDetail";
-import { origin } from "@/utils/api";
 import type { SignInRequest } from "../structs/SignInRequest";
 
 /**
@@ -31,17 +30,8 @@ export const userUserStore = defineStore({
      * @param request request.
      */
     async signIn(request: SignInRequest) {
-      const res = await fetch(baseUrl + "/auth/login", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": origin,
-        },
-        body: JSON.stringify(request),
-      });
+      const response = await postAsync<any, any>("/auth/login", request);
 
-      const response = await res.json();
       this.user = new userDetail(request, response.data?.token ?? "");
       localStorage.setItem(this.$id, JSON.stringify(this.user));
     },
@@ -52,14 +42,7 @@ export const userUserStore = defineStore({
     async signOut() {
       if (this.user === null) return;
 
-      await fetch(baseUrl + "/auth/logout", {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          Authorization: this.user.getAuth(),
-          "Access-Control-Allow-Origin": origin,
-        },
-      });
+      getAsync("/auth/logout", this.user);
 
       localStorage.removeItem(this.$id);
       this.user = userDetail.Empty();

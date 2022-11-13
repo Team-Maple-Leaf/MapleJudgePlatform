@@ -6,62 +6,62 @@ export class UserInfo {
   /**
    * The JWT's issuer
    */
-  iss?: string;
+  public iss?: string;
 
   /**
    * Client ID
    */
-  aud?: string;
+  public aud?: string;
 
   /**
    * 구글 계정 unique ID
    */
-  sub?: string;
+  public sub?: string;
 
   /**
    * 사용자 이메일 주소
    */
-  email?: string;
+  public email?: string;
 
   /**
    * true, if Google has verified the email address
    */
-  email_verified?: boolean;
+  public email_verified?: boolean;
 
   /**
    * 사용자 전체 이름
    */
-  name?: string;
+  public name?: string;
 
   /**
    * 사용자 프로필 사진 주소
    */
-  picture?: string;
+  public picture?: string;
 
   /**
    * 사용자 이름
    */
-  given_name?: string;
+  public given_name?: string;
 
   /**
    * 사용자 성
    */
-  family_name?: string;
+  public family_name?: string;
 
   /**
    * Unix timestamp of the assertion's creation time
    */
-  iat?: number;
+  public iat?: number;
 
   /**
    * Unix timestamp of the assertion's expiration time
    */
-  exp?: number;
+  public exp?: number;
 
-  nbf?: number;
-  hd?: string;
-  azp?: string;
-  jti?: string;
+  public nbf?: number;
+  public hd?: string;
+  public azp?: string;
+  public jti?: string;
 
   constructor(data: any) {
     if (data === undefined) return;
