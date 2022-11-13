@@ -56,7 +56,7 @@ export const userUserStore = defineStore({
         method: "GET",
         mode: "cors",
         headers: {
-          Authorization: this.user.jwt ?? "",
+          Authorization: this.user.getAuth(),
           "Access-Control-Allow-Origin": origin,
         },
       });

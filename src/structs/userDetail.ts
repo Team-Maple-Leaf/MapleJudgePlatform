@@ -28,6 +28,14 @@ export class userDetail {
   }
 
   /**
+   * JWT Auth 값을 반환합니다.
+   * @returns auth.
+   */
+  getAuth(): string {
+    return "Bearer " + (this.jwt ?? "");
+  }
+
+  /**
    * 값을 업데이트 합니다.
    * @param props 업데이트 대상 props.
    */
