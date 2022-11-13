@@ -130,7 +130,7 @@ import jpaUrl from "@/assets/mainPageView/spring-jpa-logo.png";
 import jwtUrl from "@/assets/mainPageView/jwt-logo.png";
 import gradleUrl from "@/assets/mainPageView/gradle-logo.png";
 import swaggerUrl from "@/assets/mainPageView/swagger-logo.png";
-import rustUrl from "@/assets/mainPageView/rust-logo-crab.png";
+import rustUrl from "@/assets/mainPageView/rust-logo.png";
 import mysqlUrl from "@/assets/mainPageView/mysql-logo.png";
 import redisUrl from "@/assets/mainPageView/redis-logo.png";
 import githubUrl from "@/assets/mainPageView/github-logo.png";
