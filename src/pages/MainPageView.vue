@@ -37,7 +37,7 @@
     <v-responsive class="align-center mx-auto" height="100%" width="100%">
       <h1>Architecture</h1>
       <v-col />
-      <v-img src="../../public/image/sub-screen.png" :aspect-ratio="12 / 5" />
+      <v-img src="./mainPageView/sub-screen.png" :aspect-ratio="12 / 5" />
       <v-col /><v-col />
     </v-responsive>
   </v-container>
@@ -119,22 +119,22 @@
 const pages = [
   {
     id: 0,
-    src: "../../public/image/sub-screen.png",
+    src: "./mainPageView/sub-screen.png",
     content: "다양한 종류의 알고리즘 문제를 풀어볼 수 있습니다.",
   },
   {
     id: 1,
-    src: "../../public/image/sub-screen.png",
+    src: "./mainPageView/sub-screen.png",
     content: "알고리즘 문제를 풀어 정답 여부를 판단할 수 있습니다.",
   },
   {
     id: 2,
-    src: "../../public/image/sub-screen.png",
+    src: "./mainPageView/sub-screen.png",
     content: "정답이 아닐 때 정답이 아닌 이유를 보여줍니다.",
   },
   {
     id: 3,
-    src: "../../public/image/sub-screen.png",
+    src: "./mainPageView/sub-screen.png",
     content: "개인 계정에서 자신이 풀어본 문제를 확인할 수 있습니다.",
   },
 ];
@@ -142,92 +142,92 @@ const pages = [
 const clientImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/vuejs-logo.png",
+    src: "./mainPageView/vuejs-logo.png",
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/vercel-logo.png",
+    src: "./mainPageView/vercel-logo.png",
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/ts-logo.png",
+    src: "./mainPageView/ts-logo.png",
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/pnpm-logo.png",
+    src: "./mainPageView/pnpm-logo.png",
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/pinia-logo.svg",
+    src: "./mainPageView/pinia-logo.svg",
   },
   {
     id: 5,
-    src: "../../public/image/techStackLogo/nodejs-logo.png",
+    src: "./mainPageView/nodejs-logo.png",
   },
 ];
 
 const serverImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/spring-boot-logo.png",
+    src: "./mainPageView/spring-boot-logo.png",
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/spring-security-logo.png",
+    src: "./mainPageView/spring-security-logo.png",
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/spring-jpa-logo.png",
+    src: "./mainPageView/spring-jpa-logo.png",
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/jwt-logo.png",
+    src: "./mainPageView/jwt-logo.png",
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/gradle-logo.png",
+    src: "./mainPageView/gradle-logo.png",
   },
   {
     id: 5,
-    src: "../../public/image/techStackLogo/swagger-logo.png",
+    src: "./mainPageView/swagger-logo.png",
   },
   {
     id: 6,
-    src: "../../public/image/techStackLogo/rust-logo-crab.png",
+    src: "./mainPageView/rust-logo.png",
   },
 ];
 
 const dbImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/mysql-logo.png",
+    src: "./mainPageView/mysql-logo.png",
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/redis-logo.png",
+    src: "./mainPageView/redis-logo.png",
   },
 ];
 
 const infraImgs = [
   {
     id: 0,
-    src: "../../public/image/techStackLogo/github-logo.png",
+    src: "./mainPageView/github-logo.png",
   },
   {
     id: 1,
-    src: "../../public/image/techStackLogo/github-actions-logo.png",
+    src: "./mainPageView/github-actions-logo.png",
   },
   {
     id: 2,
-    src: "../../public/image/techStackLogo/docker-logo.png",
+    src: "./mainPageView/docker-logo.png",
   },
   {
     id: 3,
-    src: "../../public/image/techStackLogo/docker-compose-logo.png",
+    src: "./mainPageView/docker-compose-logo.png",
   },
   {
     id: 4,
-    src: "../../public/image/techStackLogo/teamcity-logo.png",
+    src: "./mainPageView/teamcity-logo.png",
   },
 ];
 

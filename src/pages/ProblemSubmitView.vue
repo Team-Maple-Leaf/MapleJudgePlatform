@@ -42,9 +42,9 @@ const checkTextareaCode = ref([
 
 const form = ref();
 
-const gotoResultPage = async() => {
+const gotoResultPage = async () => {
   const result = await form.value.validate();
-  
+
   if (result.valid) {
     router.push("/result/" + problemNo);
   }
