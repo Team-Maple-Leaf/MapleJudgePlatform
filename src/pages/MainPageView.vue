@@ -37,7 +37,7 @@
     <v-responsive class="align-center mx-auto" height="100%" width="100%">
       <h1>Architecture</h1>
       <v-col />
-      <v-img :src="architectureUrl" :aspect-ratio="12 / 5" />
+      <v-img src="./mainPageView/sub-screen.png" :aspect-ratio="12 / 5" />
       <v-col /><v-col />
     </v-responsive>
   </v-container>
@@ -116,48 +116,25 @@
 </template>
 
 <script setup lang="ts">
-import architectureUrl from "@/assets/mainPageView/sub-screen.png";
-import pageUrl from "@/assets/mainPageView/sub-screen.png";
-import vueUrl from "@/assets/mainPageView/vuejs-logo.png";
-import vercelUrl from "@/assets/mainPageView/vercel-logo.png";
-import tsUrl from "@/assets/mainPageView/ts-logo.png";
-import pnpmUrl from "@/assets/mainPageView/pnpm-logo.png";
-import piniaUrl from "@/assets/mainPageView/pinia-logo.svg";
-import nodejsUrl from "@/assets/mainPageView/nodejs-logo.png";
-import springbootUrl from "@/assets/mainPageView/spring-boot-logo.png";
-import springSecurityUrl from "@/assets/mainPageView/spring-security-logo.png";
-import jpaUrl from "@/assets/mainPageView/spring-jpa-logo.png";
-import jwtUrl from "@/assets/mainPageView/jwt-logo.png";
-import gradleUrl from "@/assets/mainPageView/gradle-logo.png";
-import swaggerUrl from "@/assets/mainPageView/swagger-logo.png";
-import rustUrl from "@/assets/mainPageView/rust-logo.png";
-import mysqlUrl from "@/assets/mainPageView/mysql-logo.png";
-import redisUrl from "@/assets/mainPageView/redis-logo.png";
-import githubUrl from "@/assets/mainPageView/github-logo.png";
-import githubActionsUrl from "@/assets/mainPageView/github-actions-logo.png";
-import dockerUrl from "@/assets/mainPageView/docker-logo.png";
-import dockerComposeUrl from "@/assets/mainPageView/docker-compose-logo.png";
-import teamcityUrl from "@/assets/mainPageView/teamcity-logo.png";
-
 const pages = [
   {
     id: 0,
-    src: pageUrl,
+    src: "./mainPageView/sub-screen.png",
     content: "다양한 종류의 알고리즘 문제를 풀어볼 수 있습니다.",
   },
   {
     id: 1,
-    src: pageUrl,
+    src: "./mainPageView/sub-screen.png",
     content: "알고리즘 문제를 풀어 정답 여부를 판단할 수 있습니다.",
   },
   {
     id: 2,
-    src: pageUrl,
+    src: "./mainPageView/sub-screen.png",
     content: "정답이 아닐 때 정답이 아닌 이유를 보여줍니다.",
   },
   {
     id: 3,
-    src: pageUrl,
+    src: "./mainPageView/sub-screen.png",
     content: "개인 계정에서 자신이 풀어본 문제를 확인할 수 있습니다.",
   },
 ];
@@ -165,92 +142,92 @@ const pages = [
 const clientImgs = [
   {
     id: 0,
-    src: vueUrl,
+    src: "./mainPageView/vuejs-logo.png",
   },
   {
     id: 1,
-    src: vercelUrl,
+    src: "./mainPageView/vercel-logo.png",
   },
   {
     id: 2,
-    src: tsUrl,
+    src: "./mainPageView/ts-logo.png",
   },
   {
     id: 3,
-    src: pnpmUrl,
+    src: "./mainPageView/pnpm-logo.png",
   },
   {
     id: 4,
-    src: piniaUrl,
+    src: "./mainPageView/pinia-logo.svg",
   },
   {
     id: 5,
-    src: nodejsUrl,
+    src: "./mainPageView/nodejs-logo.png",
   },
 ];
 
 const serverImgs = [
   {
     id: 0,
-    src: springbootUrl,
+    src: "./mainPageView/spring-boot-logo.png",
   },
   {
     id: 1,
-    src: springSecurityUrl,
+    src: "./mainPageView/spring-security-logo.png",
   },
   {
     id: 2,
-    src: jpaUrl,
+    src: "./mainPageView/spring-jpa-logo.png",
   },
   {
     id: 3,
-    src: jwtUrl,
+    src: "./mainPageView/jwt-logo.png",
   },
   {
     id: 4,
-    src: gradleUrl,
+    src: "./mainPageView/gradle-logo.png",
   },
   {
     id: 5,
-    src: swaggerUrl,
+    src: "./mainPageView/swagger-logo.png",
   },
   {
     id: 6,
-    src: rustUrl,
+    src: "./mainPageView/rust-logo.png",
   },
 ];
 
 const dbImgs = [
   {
     id: 0,
-    src: mysqlUrl,
+    src: "./mainPageView/mysql-logo.png",
   },
   {
     id: 1,
-    src: redisUrl,
+    src: "./mainPageView/redis-logo.png",
   },
 ];
 
 const infraImgs = [
   {
     id: 0,
-    src: githubUrl,
+    src: "./mainPageView/github-logo.png",
   },
   {
     id: 1,
-    src: githubActionsUrl,
+    src: "./mainPageView/github-actions-logo.png",
   },
   {
     id: 2,
-    src: dockerUrl,
+    src: "./mainPageView/docker-logo.png",
   },
   {
     id: 3,
-    src: dockerComposeUrl,
+    src: "./mainPageView/docker-compose-logo.png",
   },
   {
     id: 4,
-    src: teamcityUrl,
+    src: "./mainPageView/teamcity-logo.png",
   },
 ];
 
