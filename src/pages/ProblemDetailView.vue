@@ -2,65 +2,97 @@
   <div>
     <v-btn :to="'/submit/' + problemNo">제출</v-btn>
 
-    <h1>문제번호: {{ problemNo }}</h1>
+    <div class="text-h3 pa-4">문제번호: {{ problemNo }}</div>
 
-    <hr />
+    <v-divider></v-divider>
 
-    <v-table></v-table>
+    <v-row>
+      <v-col cols="12">
+        <v-sheet class="pa-2">
+          <div class="text-h6">문제</div>
+          <p>{{ problem.problem_desc }}</p>
+        </v-sheet>
+      </v-col>
+    </v-row>
 
-    <p>문제</p>
-    <p>두 정수 A와 B를 입력받은 다음, A-B를 출력하는 프로그램을 작성하시오.</p>
+    <v-row>
+      <v-col cols="12">
+        <v-sheet class="pa-2">
+          <v-table>
+            <thead>
+              <tr>
+                <th>메모리 제한</th>
+                <th>시간 제한</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ problem.limit_info?.memory ?? "-" }} (MB)</td>
+                <td>{{ problem.limit_info?.time ?? "-" }} 초</td>
+              </tr>
+            </tbody>
+          </v-table>
+        </v-sheet>
+      </v-col>
+    </v-row>
 
-    <p>입력</p>
-    <p>첫째 줄에 A와 B가 주어진다. (0 &lt; A, B &lt; 10)</p>
+    <v-divider></v-divider>
 
-    <p>출력</p>
-    <p>첫째 줄에 A-B를 출력한다.</p>
+    <v-row>
+      <v-col cols="12">
+        <v-sheet class="pa-2">
+          <div class="text-h6">입력</div>
+          <p>{{ problem.input_desc }}</p>
+        </v-sheet>
+      </v-col>
+    </v-row>
 
-    <div v-for="item in items" :key="item.id">
-      <p>{{ item.input.title }}</p>
-      <p>{{ item.input.value }}</p>
+    <v-divider></v-divider>
 
-      <p>{{ item.output.title }}</p>
-      <p>{{ item.output.value }}</p>
-    </div>
+    <v-row>
+      <v-col cols="12">
+        <v-sheet class="pa-2">
+          <div class="text-h6">출력</div>
+          <p>{{ problem.output_desc }}</p>
+        </v-sheet>
+      </v-col>
+    </v-row>
+
+    <v-divider></v-divider>
+
+    <v-row v-for="ex in problem.io_examples" :key="ex.input">
+      <v-col>
+        <v-sheet class="pa-2">
+          <div class="text-h6">입력</div>
+          <p v-if="ex.input !== undefined && ex.input !== ''">{{ ex.input }}</p>
+          <p v-else>없음</p>
+        </v-sheet>
+      </v-col>
+
+      <v-col>
+        <v-sheet class="pa-2">
+          <div class="text-h6">출력</div>
+          <p v-if="ex.output !== undefined && ex.output !== ''">
+            {{ ex.output }}
+          </p>
+          <p v-else>없음</p>
+        </v-sheet>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { Problem } from "@/structs/Problem";
 import { useRoute } from "vue-router";
+import { getAsync } from "@/utils/api";
+import { ref } from "vue";
 
 const route = useRoute();
 const problemNo = route.params.no;
 
-// todo: no를 이용해 서버에 문제 가져오기 질의
-// ApiWrapper.get("/problem/" + no)
-//   .then((response) => (model.value = response))
-//   .catch((error) => {
-//     const status =
-//       typeof error === "number"
-//         ? "HTTP response code: " + error
-//         : (error as TypeError)?.message;
-
-//     router.push({
-//       name: "Error",
-//       params: { status },
-//     });
-//   });
-
-const items = [
-  {
-    id: 0,
-    input: {
-      title: "예제 입력 1",
-      value: "2 1",
-    },
-    output: {
-      title: "예제 출력 1",
-      value: "1",
-    },
-  },
-];
+const receivedProblems = await getAsync<any>("/problem/" + problemNo);
+const problem = ref(receivedProblems.data as Problem);
 </script>
 
 <style scoped></style>
