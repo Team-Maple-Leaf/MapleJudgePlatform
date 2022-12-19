@@ -15,24 +15,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="result in sampleResult" :key="result.submitId">
-          <td>{{ result.submitId }}</td>
-          <td>{{ result.userId }}</td>
+        <tr v-for="result in results" :key="result.state.answer_id">
+          <td>{{ result.state.answer_id }}</td>
+          <td>{{ result.user_id }}</td>
           <td>
             <v-btn
               flat
               class="problem-title"
-              @click="handleProblemClick(result.problemId)"
+              @click="handleProblemClick(result.problem_id)"
             >
-              {{ result.problemId }}
+              {{ result.problem_id }}
             </v-btn>
           </td>
-          <td>{{ result.result }}</td>
-          <td>{{ result.memory }}</td>
-          <td>{{ result.time }}</td>
+          <td>{{ result.state.result }}</td>
+          <td>{{ result.state.memory }}</td>
+          <td>{{ result.state.time }}</td>
           <td>{{ result.language }}</td>
-          <td>{{ result.codeLength }}</td>
-          <td>{{ result.submitTime }}</td>
+          <td>{{ result.code_length }}</td>
+          <td>{{ result.date }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -42,49 +42,43 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
+import { getAsync } from "@/utils/api";
+
+const exampleResult = ref([
+  {
+    code: '#include <stdio.h>\nint main() {\n\tprintf("Hello World!");\n\treturn 0;\n}',
+    code_length: 0,
+    date: "2022-12-19T00:38:33.770Z",
+    id: 0,
+    language: "C",
+    problem_id: 1,
+    state: {
+      answer_id: 0,
+      memory: 0,
+      result: "ACCEPTED",
+      time: 0,
+    },
+    user_id: "1",
+  },
+]);
 
 const route = useRoute();
 const router = useRouter();
 const problemNumber = ref(Number(route.params.no));
 
-const sampleResult = ref([
-  {
-    submitId: 0,
-    problemId: 0,
-    userId: 0,
-    result: "AC",
-    time: 100,
-    memory: 100,
-    language: "C++",
-    codeLength: 500,
-    submitTime: "2021-08-01",
-  },
-]);
-
-for (let i = 1; i <= 20; i++) {
-  sampleResult.value.push({
-    submitId: i,
-    problemId: i,
-    userId: i,
-    result: "AC",
-    time: 100,
-    memory: 100,
-    language: "C++",
-    codeLength: 500,
-    submitTime: "2021-08-01",
-  });
-}
+const resultData = await getAsync<any>("/answers");
+const results = ref(resultData.data as any[]);
 
 if (Number.isNaN(problemNumber.value)) {
-  sampleResult.value;
+  results.value;
 } else {
-  sampleResult.value = sampleResult.value.filter(
-    (result) => result.problemId === problemNumber.value
+  results.value = results.value.filter(
+    (result) => result.problem_id === problemNumber.value
   );
 }
 
-const handleProblemClick = (problemId: number) => {
-  router.push("/problem/" + problemId);
+const handleProblemClick = (problem_id: number) => {
+  router.push("/problem/" + problem_id);
 };
 </script>
 
