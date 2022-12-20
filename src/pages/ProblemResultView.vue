@@ -32,7 +32,7 @@
           <td>{{ result.state.time }}</td>
           <td>{{ result.language }}</td>
           <td>{{ result.code_length }}</td>
-          <td>{{ result.date }}</td>
+          <td>{{ dateTimeFormatter.format(new Date(result.date)) }}</td>
         </tr>
       </tbody>
     </v-table>
@@ -43,6 +43,33 @@
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
 import { getAsync } from "@/utils/api";
+
+export interface Result {
+  code: string;
+  code_length: number;
+  date: string;
+  id: number;
+  language: string;
+  problem_id: number;
+  state: {
+    answer_id: number;
+    memory: number;
+    result: string;
+    time: number;
+  };
+  user_id: string;
+}
+
+const dateTimeOptions = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  timeZone: "UTC",
+} as Intl.DateTimeFormatOptions;
+
+const dateTimeFormatter = new Intl.DateTimeFormat("ko-KR", dateTimeOptions);
 
 const exampleResult = ref([
   {
@@ -67,7 +94,7 @@ const router = useRouter();
 const problemNumber = ref(Number(route.params.no));
 
 const resultData = await getAsync<any>("/answers");
-const results = ref(resultData.data as any[]);
+const results = ref(resultData.data as Result[]);
 
 if (Number.isNaN(problemNumber.value)) {
   results.value;
