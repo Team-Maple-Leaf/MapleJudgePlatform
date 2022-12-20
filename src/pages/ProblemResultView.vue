@@ -71,24 +71,6 @@ const dateTimeOptions = {
 
 const dateTimeFormatter = new Intl.DateTimeFormat("ko-KR", dateTimeOptions);
 
-const exampleResult = ref([
-  {
-    code: '#include <stdio.h>\nint main() {\n\tprintf("Hello World!");\n\treturn 0;\n}',
-    code_length: 0,
-    date: "2022-12-19T00:38:33.770Z",
-    id: 0,
-    language: "C",
-    problem_id: 1,
-    state: {
-      answer_id: 0,
-      memory: 0,
-      result: "ACCEPTED",
-      time: 0,
-    },
-    user_id: "1",
-  },
-]);
-
 const route = useRoute();
 const router = useRouter();
 const problemNumber = ref(Number(route.params.no));
