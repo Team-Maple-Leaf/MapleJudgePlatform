@@ -2,7 +2,7 @@
   <div class="submitPage">
     <v-container>
       <h2>{{ problemNo }}</h2>
-      <v-form ref="form" @submit.prevent="gotoResultPage" lazy-validation>
+      <v-form ref="form" @submit.prevent="gotoResultPage">
         <v-select
           label="언어 선택"
           class="selectBox"
@@ -24,28 +24,55 @@
 </template>
 
 <script setup lang="ts">
+import type { userDetail } from "@/structs/userDetail";
 import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
+import { ref, type PropType } from "vue";
+import axios from "axios";
 
 const router = useRouter();
 const route = useRoute();
 
 const problemNo = route.params.no;
-const languageList: string[] = ["c", "java"];
+const languageList: string[] = ["C"];
+
+const form = ref();
 
 const selectedLanguage = ref(languageList[0]);
 const textareaCode = ref("");
-
 const checkTextareaCode = ref([
   (v: any) => !!v || "코드는 필수 입력사항입니다.",
 ]);
 
-const form = ref();
+const props = defineProps({
+  user: {
+    type: Object as PropType<userDetail>,
+    required: true,
+  },
+});
+const userId: string = props.user?.email!;
+
+const url = "https://www.maple-leaf.dev:45000" + "/v1/submit/" + problemNo;
 
 const gotoResultPage = async () => {
   const result = await form.value.validate();
 
   if (result.valid) {
+    const sendData = ref([
+      {
+        code: textareaCode.value,
+        language: selectedLanguage.value,
+        user_id: userId,
+      },
+    ]);
+
+    axios
+      .post(url, sendData)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     router.push("/result/" + problemNo);
   }
 };
