@@ -14,7 +14,7 @@
           <th>제출 시간</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="results.length !== 0">
         <tr v-for="result in results" :key="result.state.answer_id">
           <td>{{ result.state.answer_id }}</td>
           <td>{{ result.user_id }}</td>
@@ -33,6 +33,11 @@
           <td>{{ result.language }}</td>
           <td>{{ result.code_length }}</td>
           <td>{{ dateTimeFormatter.format(new Date(result.date)) }}</td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+          <td colspan="9" class="text-center">제출된 답안이 없습니다.</td>
         </tr>
       </tbody>
     </v-table>
