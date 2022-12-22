@@ -24,10 +24,16 @@
 </template>
 
 <script setup lang="ts">
-import type { userDetail } from "@/structs/userDetail";
+import { userDetail } from "@/structs/userDetail";
 import { useRoute, useRouter } from "vue-router";
 import { ref, type PropType } from "vue";
-import axios from "axios";
+import { postAsync } from "@/utils/api";
+
+export interface sendDataSet {
+  code: string;
+  language: string;
+  user_id: string;
+}
 
 const router = useRouter();
 const route = useRoute();
@@ -51,28 +57,21 @@ const props = defineProps({
 });
 const userId: string = props.user?.email!;
 
-const url = "https://www.maple-leaf.dev:45000" + "/v1/submit/" + problemNo;
-
 const gotoResultPage = async () => {
   const result = await form.value.validate();
 
   if (result.valid) {
-    const sendData = ref([
-      {
-        code: textareaCode.value,
-        language: selectedLanguage.value,
-        user_id: userId,
-      },
-    ]);
+    const sendData: sendDataSet = {
+      code: textareaCode.value,
+      language: selectedLanguage.value,
+      user_id: userId,
+    };
 
-    axios
-      .post(url, sendData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    const responseData = postAsync<any, sendDataSet>(
+      "/submit/" + problemNo,
+      sendData,
+      props.user
+    );
     router.push("/result/" + problemNo);
   }
 };
