@@ -5,7 +5,7 @@
     <v-main>
       <suspense>
         <v-container fill-height fluid>
-          <router-view :key="$route.path" :user="user"></router-view>
+          <router-view :key="$route.path"></router-view>
         </v-container>
       </suspense>
     </v-main>
