@@ -21,7 +21,8 @@ export const userUserStore = defineStore({
       const user = localStorage.getItem(this.$id);
 
       if (user !== null) {
-        this.user = JSON.parse(user);
+        this.user = new userDetail();
+        this.user.setUserDetail(JSON.parse(user));
       }
     },
 
@@ -32,7 +33,9 @@ export const userUserStore = defineStore({
     async signIn(request: SignInRequest) {
       const response = await postAsync<any, any>("/auth/login", request);
 
-      this.user = new userDetail(request, response.data?.token ?? "");
+      this.user = new userDetail();
+      this.user.setInRequest(request);
+      this.user.setJwt(response.data?.token ?? "");
       localStorage.setItem(this.$id, JSON.stringify(this.user));
     },
 
