@@ -11,12 +11,23 @@ export class userDetail {
   public email: string | undefined;
   public jwt: string | undefined;
 
-  constructor(signInRequest: SignInRequest, jwt: string) {
+  setUserDetail(user: userDetail): void {
+    this.maple = user.maple;
+    this.name = user.name;
+    this.picture = user.picture;
+    this.email = user.email;
+    this.jwt = user.jwt;
+  }
+
+  setJwt(jwt: string): void {
+    this.jwt = jwt;
+  }
+
+  setInRequest(signInRequest: SignInRequest): void {
     this.maple = signInRequest.maple;
     this.name = signInRequest.name;
     this.picture = signInRequest.picture;
     this.email = signInRequest.email;
-    this.jwt = jwt;
   }
 
   /**
@@ -52,6 +63,9 @@ export class userDetail {
    * @returns Default Instance.
    */
   static Empty(): userDetail {
-    return new userDetail(new SignInRequest(UserInfo.default()), "");
+    const emptyUser = new userDetail();
+    emptyUser.setJwt("");
+    emptyUser.setInRequest(new SignInRequest(UserInfo.default()));
+    return emptyUser;
   }
 }

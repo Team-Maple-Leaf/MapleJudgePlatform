@@ -51,7 +51,8 @@ const checkTextareaCode = ref([
 ]);
 
 const userDataStore = userUserStore();
-const userId = userDataStore.user.email;
+userDataStore.load();
+const userId = userDataStore.user.maple;
 
 const gotoResultPage = async () => {
   const result = await form.value.validate();
@@ -69,7 +70,8 @@ const gotoResultPage = async () => {
 
       const responseData = postAsync<any, sendDataSet>(
         "/submit/" + problemNo,
-        sendData
+        sendData,
+        userDataStore.user
       );
 
       router.push("/result/" + problemNo);
