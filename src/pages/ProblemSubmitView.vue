@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { userDetail } from "@/structs/userDetail";
+import type { userDetail } from "@/structs/userDetail";
 import { useRoute, useRouter } from "vue-router";
 import { ref, type PropType } from "vue";
 import { postAsync } from "@/utils/api";
