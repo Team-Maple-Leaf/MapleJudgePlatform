@@ -10,6 +10,7 @@ export class userDetail {
   public picture: string | undefined;
   public email: string | undefined;
   public jwt: string | undefined;
+  public refreshToken: string | undefined;
 
   setUserDetail(user: userDetail): void {
     this.maple = user.maple;
@@ -21,6 +22,10 @@ export class userDetail {
 
   setJwt(jwt: string): void {
     this.jwt = jwt;
+  }
+
+  setRefreshToken(refreshToken: string): void {
+    this.refreshToken = refreshToken;
   }
 
   setInRequest(signInRequest: SignInRequest): void {
