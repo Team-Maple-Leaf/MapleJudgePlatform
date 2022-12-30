@@ -14,9 +14,9 @@
           <th>제출 시간</th>
         </tr>
       </thead>
-      <tbody v-if="results.length !== 0">
-        <tr v-for="result in results" :key="result.state.answer_id">
-          <td>{{ result.state.answer_id }}</td>
+      <tbody v-if="results.data.length !== 0">
+        <tr v-for="result in results.data" :key="result.id">
+          <td>{{ result.id }}</td>
           <td>{{ result.user_id }}</td>
           <td>
             <v-btn
@@ -28,10 +28,10 @@
             </v-btn>
           </td>
           <td>{{ result.state.result }}</td>
-          <td>{{ result.state.memory }}</td>
-          <td>{{ result.state.time }}</td>
+          <td>{{ result.state.memory }} KB</td>
+          <td>{{ result.state.time }} ms</td>
           <td>{{ result.language }}</td>
-          <td>{{ result.code_length }}</td>
+          <td>{{ result.code_length }} B</td>
           <td>{{ dateTimeFormatter.format(new Date(result.date)) }}</td>
         </tr>
       </tbody>
@@ -51,18 +51,22 @@ import { getAsync } from "@/utils/api";
 
 export interface Result {
   code: string;
-  code_length: number;
-  date: string;
-  id: number;
-  language: string;
-  problem_id: number;
-  state: {
-    answer_id: number;
-    memory: number;
-    result: string;
-    time: number;
-  };
-  user_id: string;
+  message: string;
+  data: {
+    id: number;
+    code: string;
+    state: {
+      result: string;
+      time: number;
+      memory: number;
+      answer_id: number | null;
+    };
+    language: string;
+    date: number;
+    user_id: string;
+    problem_id: number;
+    code_length: number;
+  }[];
 }
 
 const dateTimeOptions = {
@@ -81,13 +85,13 @@ const router = useRouter();
 const problemNumber = ref(Number(route.params.no));
 
 const resultData = await getAsync<any>("/answers");
-const results = ref(resultData.data as Result[]);
+const results = ref(resultData.data as Result);
 
 if (Number.isNaN(problemNumber.value)) {
-  results.value;
+  results.value.data;
 } else {
-  results.value = results.value.filter(
-    (result) => result.problem_id === problemNumber.value
+  results.value.data = results.value.data.filter(
+    (data) => data.problem_id === problemNumber.value
   );
 }
 
