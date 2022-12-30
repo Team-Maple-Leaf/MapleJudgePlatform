@@ -37,7 +37,6 @@ export const userUserStore = defineStore({
       this.user.setInRequest(request);
       this.user.setJwt(response.data?.accessToken ?? "");
       this.user.setRefreshToken(response.data?.refreshToken ?? "");
-      console.log(this.user);
       localStorage.setItem(this.$id, JSON.stringify(this.user));
     },
 
