@@ -2,11 +2,17 @@
   <v-app-bar color="bg-amber-darken-1">
     <v-hover>
       <router-link to="/">
-        <img :src="logo" />
+        <img
+          :src="logo"
+          width="40"
+          height="35"
+          class="align-center"
+          style="margin-left: 10px"
+        />
       </router-link>
     </v-hover>
 
-    <v-app-bar-title>{{ title }}</v-app-bar-title>
+    <v-app-bar-title style="margin-left: 5px">{{ title }}</v-app-bar-title>
 
     <v-spacer></v-spacer>
 
