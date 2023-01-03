@@ -18,6 +18,7 @@ export class userDetail {
     this.picture = user.picture;
     this.email = user.email;
     this.jwt = user.jwt;
+    this.refreshToken = user.refreshToken;
   }
 
   setJwt(jwt: string): void {
@@ -61,6 +62,7 @@ export class userDetail {
     this.picture = props.picture;
     this.email = props.email;
     this.jwt = props.jwt;
+    this.refreshToken = props.refreshToken;
   }
 
   /**
