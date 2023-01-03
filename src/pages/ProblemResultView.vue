@@ -14,7 +14,7 @@
           <th>제출 시간</th>
         </tr>
       </thead>
-      <tbody v-if="results.data.length !== 0">
+      <tbody v-if="results.code === 200 && results.data.length !== 0">
         <tr v-for="result in results.data" :key="result.id">
           <td>{{ result.id }}</td>
           <td>{{ result.user_id }}</td>
@@ -48,9 +48,10 @@
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
 import { getAsync } from "@/utils/api";
+import { userUserStore } from "@/stores/user.store";
 
-export interface Result {
-  code: string;
+interface Result {
+  code: number;
   message: string;
   data: {
     id: number;
@@ -69,13 +70,16 @@ export interface Result {
   }[];
 }
 
+const userStore = userUserStore();
+userStore.load();
+
 const dateTimeOptions = {
   year: "numeric",
   month: "long",
   day: "numeric",
   hour: "numeric",
   minute: "numeric",
-  timeZone: "UTC",
+  timeZone: "Asia/Seoul",
 } as Intl.DateTimeFormatOptions;
 
 const dateTimeFormatter = new Intl.DateTimeFormat("ko-KR", dateTimeOptions);
@@ -84,8 +88,8 @@ const route = useRoute();
 const router = useRouter();
 const problemNumber = ref(Number(route.params.no));
 
-const resultData = await getAsync<any>("/answers");
-const results = ref(resultData.data as Result);
+const resultData = await getAsync<any>("/answers", userStore.user);
+const results = ref(resultData as Result);
 
 if (Number.isNaN(problemNumber.value)) {
   results.value.data;
