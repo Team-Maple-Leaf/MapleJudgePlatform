@@ -1,7 +1,16 @@
 <template>
-  <v-row justify="center">
+  <v-col />
+  <v-col />
+  <v-col />
+  <v-row fluid class="d-flex text-center flex-column">
     <v-col cols="auto">
-      <v-card class="mx-auto" width="460" prepend-icon="mdi-home">
+      <v-card
+        class="mx-auto pa-2"
+        width="300"
+        height="127"
+        elevation="0"
+        id="loginBtn"
+      >
         <template v-slot:title>로그인</template>
 
         <GoogleLogin
@@ -42,4 +51,11 @@ onMounted(() => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+#loginBtn {
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: rgb(223, 223, 223);
+  border-radius: 5px;
+}
+</style>
