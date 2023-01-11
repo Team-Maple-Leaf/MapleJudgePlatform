@@ -77,13 +77,13 @@ const handleProblemClick = (problem_id: number) => {
 };
 
 onMounted(() => {
-  intervalId.value = setInterval(() => {
+  intervalId.value = window.setInterval(() => {
     resultStore.load(userStore.user);
   }, 1000);
 });
 onUnmounted(() => {
   if (intervalId.value !== null) {
-    clearInterval(intervalId.value);
+    window.clearInterval(intervalId.value);
   }
 });
 </script>
