@@ -14,7 +14,11 @@
           <th>제출 시간</th>
         </tr>
       </thead>
-      <tbody v-if="results.code === 200 && results.data.length !== 0">
+      <tbody
+        v-if="
+          results !== null && results.code === 200 && results.data.length !== 0
+        "
+      >
         <tr v-for="result in results.data" :key="result.id">
           <td>{{ result.id }}</td>
           <td>{{ result.user_id }}</td>
@@ -27,7 +31,7 @@
               {{ result.problem_id }}
             </v-btn>
           </td>
-          <td>{{ result.state.result }}</td>
+          <td :class="result.state.result">{{ result.state.result }}</td>
           <td>{{ result.state.memory }} KB</td>
           <td>{{ result.state.time }} ms</td>
           <td>{{ result.language }}</td>
@@ -46,66 +50,73 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from "vue-router";
-import { ref } from "vue";
-import { getAsync } from "@/utils/api";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useResultStore } from "@/stores/result.store";
 import { userUserStore } from "@/stores/user.store";
+import dateTimeFormatter from "@/structs/TimeFormat";
 
-interface Result {
-  code: number;
-  message: string;
-  data: {
-    id: number;
-    code: string;
-    state: {
-      result: string;
-      time: number;
-      memory: number;
-      answer_id: number | null;
-    };
-    language: string;
-    date: number;
-    user_id: string;
-    problem_id: number;
-    code_length: number;
-  }[];
-}
-
-const userStore = userUserStore();
-userStore.load();
-
-const dateTimeOptions = {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  hour: "numeric",
-  minute: "numeric",
-  timeZone: "Asia/Seoul",
-} as Intl.DateTimeFormatOptions;
-
-const dateTimeFormatter = new Intl.DateTimeFormat("ko-KR", dateTimeOptions);
-
+const resultStore = useResultStore();
 const route = useRoute();
 const router = useRouter();
+const userStore = userUserStore();
+
 const problemNumber = ref(Number(route.params.no));
+const intervalId = ref<number | null>(null);
 
-const resultData = await getAsync<any>("/answers", userStore.user);
-const results = ref(resultData as Result);
+userStore.load();
+resultStore.load(userStore.user);
 
-if (Number.isNaN(problemNumber.value)) {
-  results.value.data;
-} else {
-  results.value.data = results.value.data.filter(
-    (data) => data.problem_id === problemNumber.value
-  );
-}
+const results = computed(() => {
+  resultStore.idFilter(problemNumber.value);
+  resultStore.sortDecreasing();
+  return resultStore.result;
+});
 
 const handleProblemClick = (problem_id: number) => {
   router.push("/problem/" + problem_id);
 };
+
+onMounted(() => {
+  intervalId.value = window.setInterval(() => {
+    resultStore.load(userStore.user);
+  }, 1000);
+});
+onUnmounted(() => {
+  if (intervalId.value !== null) {
+    window.clearInterval(intervalId.value);
+  }
+});
 </script>
 
 <style scoped>
 .problem-title {
   background-color: transparent;
+}
+.Accepted {
+  color: #4caf50;
+}
+
+.WrongAnswer {
+  color: #f44336;
+}
+
+.Proceeding {
+  color: #ff9800;
+}
+
+.TimeLimitExceeded {
+  color: #f44336;
+}
+
+.MemoryLimitExceeded {
+  color: #f44336;
+}
+
+.CompileError {
+  color: #f44336;
+}
+
+.RuntimeError {
+  color: #f44336;
 }
 </style>

@@ -10,7 +10,7 @@ export const userUserStore = defineStore({
   id: "auth",
 
   state: () => ({
-    user: Object as unknown as userDetail,
+    user: new userDetail(),
   }),
 
   actions: {
