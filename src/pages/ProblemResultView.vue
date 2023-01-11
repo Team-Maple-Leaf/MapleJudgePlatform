@@ -31,7 +31,7 @@
               {{ result.problem_id }}
             </v-btn>
           </td>
-          <td>{{ result.state.result }}</td>
+          <td :class="result.state.result">{{ result.state.result }}</td>
           <td>{{ result.state.memory }} KB</td>
           <td>{{ result.state.time }} ms</td>
           <td>{{ result.language }}</td>
@@ -91,5 +91,32 @@ onUnmounted(() => {
 <style scoped>
 .problem-title {
   background-color: transparent;
+}
+.Accepted {
+  color: #4caf50;
+}
+
+.WrongAnswer {
+  color: #f44336;
+}
+
+.Proceeding {
+  color: #ff9800;
+}
+
+.TimeLimitExceeded {
+  color: #f44336;
+}
+
+.MemoryLimitExceeded {
+  color: #f44336;
+}
+
+.CompileError {
+  color: #f44336;
+}
+
+.RuntimeError {
+  color: #f44336;
 }
 </style>

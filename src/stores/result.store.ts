@@ -22,6 +22,7 @@ export const useResultStore = defineStore("result", {
 
     idFilter(id: number) {
       if (this.result === null) return;
+      if (Number.isNaN(id)) return;
       const newData = this.result.data.filter(
         (item: any) => item.problem_id === id
       );
