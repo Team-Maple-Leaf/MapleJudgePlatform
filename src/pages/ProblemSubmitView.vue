@@ -1,7 +1,7 @@
 <template>
   <div class="submitPage">
     <v-container>
-      <h2>{{ problemNo }}</h2>
+      <h2>{{ problem.no }}. {{ problem.title }}</h2>
       <v-form ref="form" @submit.prevent="gotoResultPage">
         <v-select
           label="언어 선택"
@@ -11,7 +11,9 @@
         ></v-select>
 
         <v-textarea
+          ref="textarea"
           rows="13"
+          @keydown.tab.prevent="useTab($event)"
           v-model="textareaCode"
           label="코드를 작성해 주세요."
           :rules="checkTextareaCode"
@@ -28,7 +30,10 @@ import type { userDetail } from "@/structs/userDetail";
 import { useRoute, useRouter } from "vue-router";
 import { ref } from "vue";
 import { postAsync } from "@/utils/api";
+import { getAsync } from "@/utils/api";
 import { userUserStore } from "../stores/user.store";
+import type { Problem } from "@/structs/Problem";
+import { text } from "stream/consumers";
 
 export interface sendDataSet {
   code: string;
@@ -40,11 +45,31 @@ const router = useRouter();
 const route = useRoute();
 
 const problemNo = route.params.no;
-const languageList: string[] = ["C"];
+const receivedProblems = await getAsync<any>("/problem/" + problemNo);
+const problem = ref(receivedProblems.data as Problem);
+const languageList: string[] = ["C99", "C++17"];
+const selectedLanguage = ref(languageList[0]);
 
 const form = ref();
+const textarea = ref();
 
-const selectedLanguage = ref(languageList[0]);
+const useTab = (event: any) => {
+  const textareaValue = textareaCode.value;
+  const textareaLen = textareaValue.length;
+  let tArea = document.querySelector("textarea")!;
+  let cursorPos = tArea.selectionStart;
+
+  if (cursorPos === undefined) {
+    cursorPos = 0;
+  }
+
+  const before = textareaValue.substr(0, cursorPos);
+  const after = textareaValue.substr(cursorPos, textareaLen);
+
+  textareaCode.value = before + "\t" + after;
+
+  tArea.selectionStart = cursorPos + "\t".length;
+};
 const textareaCode = ref("");
 const checkTextareaCode = ref([
   (v: any) => !!v || "코드는 필수 입력사항입니다.",
