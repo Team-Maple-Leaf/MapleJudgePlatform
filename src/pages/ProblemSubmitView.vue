@@ -48,7 +48,8 @@ const receivedProblems = await getAsync<any>("/problem/" + problemNo);
 const problem = ref(receivedProblems.data as Problem);
 
 const languageList: string[] = ["C99", "C++17"];
-const selectedLanguage: Readonly<any> = ref(languageList[0]);
+const readonlyLanguageList: Readonly<any> = languageList as Readonly<any>;
+const selectedLanguage = ref(readonlyLanguageList[0]);
 const selected = computed(() => {
   return selectedLanguage;
 });
