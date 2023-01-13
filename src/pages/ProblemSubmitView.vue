@@ -48,7 +48,7 @@ const receivedProblems = await getAsync<any>("/problem/" + problemNo);
 const problem = ref(receivedProblems.data as Problem);
 
 const languageList: string[] = ["C99", "C++17"];
-const selectedLanguage = ref(languageList[0]);
+const selectedLanguage: Readonly<any> = ref(languageList[0]);
 const selected = computed(() => {
   return selectedLanguage;
 });
@@ -92,16 +92,14 @@ const gotoResultPage = async () => {
     } else {
       const sendData: sendDataSet = {
         code: textareaCode.value,
-        language: selectedLanguage.value,
+        language: selected.value.value,
         user_id: userId,
       };
-
       const responseData = postAsync<any, sendDataSet>(
         "/submit/" + problemNo,
         sendData,
         userDataStore.user
       );
-
       router.push("/result/" + problemNo);
     }
   }
