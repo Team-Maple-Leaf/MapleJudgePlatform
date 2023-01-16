@@ -86,6 +86,14 @@ const useTab = (event: KeyboardEvent) => {
 const gotoResultPage = async () => {
   const result = await form.value.validate();
 
+  const selectedUserLanguage: string = selected.value.value;
+  let languageValue = "";
+  if (selectedUserLanguage === "C99") {
+    languageValue = "C";
+  } else if (selectedUserLanguage === "C++17") {
+    languageValue = "C++";
+  }
+
   if (result.valid) {
     if (!userId) {
       alert("로그인을 먼저 해야합니다.");
@@ -93,7 +101,7 @@ const gotoResultPage = async () => {
     } else {
       const sendData: sendDataSet = {
         code: textareaCode.value,
-        language: selected.value.value,
+        language: languageValue,
         user_id: userId,
       };
       const responseData = postAsync<any, sendDataSet>(
