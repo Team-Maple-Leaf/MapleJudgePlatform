@@ -23,7 +23,7 @@ app.use(vuetify);
 app.use(router);
 app.use(vue3GoogleLogin, {
   clientId:
-    "978071542851-hfj4tss7cbf8g2a80r5ad3ictrksqh1j.apps.googleusercontent.com",
+    "1012799175557-pfjjej3r66gsv6as8cj0r0b55ihnuat4.apps.googleusercontent.com",
 });
 
 app.mount("#app");
