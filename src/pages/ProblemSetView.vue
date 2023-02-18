@@ -49,16 +49,53 @@
         </tr>
       </tbody>
     </v-table>
+    <div class="text-center">
+      <v-pagination
+        v-model="page"
+        :length="receivedProblems.data.totalPages"
+        :total-visible="5"
+        circle
+        color="primary"
+      ></v-pagination>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { Problem } from "@/structs/Problem";
 import { getAsync } from "@/utils/api";
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
 
-const receivedProblems = await getAsync<any>("/problemset");
-const problems = ref(receivedProblems.data as Array<Problem>);
+const setRequestUrl = (
+  size: number | null,
+  page: number | null,
+  sort: string | null
+) => {
+  let url = "/problemset";
+  if (size !== null) url += "?size=" + size;
+  else url += "?size=10";
+  if (page !== null) url += "&page=" + page;
+  if (sort !== null) url += "&sort=" + sort;
+  return url;
+};
+
+const size = ref(10);
+const page = ref(1);
+const sort = ref("id,ASC");
+const url = computed(() =>
+  setRequestUrl(size.value, page.value - 1, sort.value)
+);
+
+const receivedProblems = ref(await getAsync<any>(url.value));
+const problems = ref(receivedProblems.value.data.content as Array<Problem>);
+
+watch(
+  () => url.value,
+  async () => {
+    receivedProblems.value = await getAsync<any>(url.value);
+    problems.value = receivedProblems.value.data.content as Array<Problem>;
+  }
+);
 </script>
 
 <style scoped>
