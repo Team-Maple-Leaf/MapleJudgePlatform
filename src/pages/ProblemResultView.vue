@@ -16,10 +16,12 @@
       </thead>
       <tbody
         v-if="
-          results !== null && results.code === 200 && results.data.length !== 0
+          results !== null &&
+          results.code === 200 &&
+          results.data.content.length !== 0
         "
       >
-        <tr v-for="result in results.data" :key="result.id">
+        <tr v-for="result in results.data.content" :key="result.id">
           <td>{{ result.id }}</td>
           <td>{{ result.user_id }}</td>
           <td>
@@ -45,6 +47,15 @@
         </tr>
       </tbody>
     </v-table>
+    <div class="text-center">
+      <v-pagination
+        v-model="resultStore.page"
+        :length="resultStore.result?.data.totalPages"
+        :total-visible="5"
+        circle
+        color="primary"
+      ></v-pagination>
+    </div>
   </div>
 </template>
 
@@ -55,9 +66,10 @@ import { useResultStore } from "@/stores/result.store";
 import { userUserStore } from "@/stores/user.store";
 import dateTimeFormatter from "@/structs/TimeFormat";
 
-const resultStore = useResultStore();
 const route = useRoute();
 const router = useRouter();
+
+const resultStore = useResultStore();
 const userStore = userUserStore();
 
 const problemNumber = ref(Number(route.params.no));
