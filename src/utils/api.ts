@@ -24,8 +24,7 @@ const getAsync = async <TResponse>(
     },
   });
 
-  console.log(response.status);
-  if (response.status !== 200)
+  if (response.status >= 400 && response.status <= 599)
     document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
@@ -55,7 +54,7 @@ const postAsync = async <TResponse, TRequest>(
     body: JSON.stringify(request),
   });
 
-  if (response.status !== 200)
+  if (response.status >= 400 && response.status <= 599)
     document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
@@ -81,7 +80,7 @@ const deleteAsync = async <TResponse>(
     },
   });
 
-  if (response.status !== 200)
+  if (response.status >= 400 && response.status <= 599)
     document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
