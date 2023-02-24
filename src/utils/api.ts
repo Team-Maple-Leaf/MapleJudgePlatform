@@ -19,6 +19,7 @@ const getAsync = async <TResponse>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Access-Control-Allow-Origin": origin,
     },
   });
@@ -43,6 +44,7 @@ const postAsync = async <TResponse, TRequest>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": origin,
     },
@@ -67,6 +69,7 @@ const deleteAsync = async <TResponse>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Access-Control-Allow-Origin": origin,
     },
   });
