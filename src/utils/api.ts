@@ -24,6 +24,10 @@ const getAsync = async <TResponse>(
     },
   });
 
+  console.log(response.status);
+  if (response.status !== 200)
+    document.location.href = `error/${response.status}`;
+
   return (await response.json()) as TResponse;
 };
 
@@ -51,6 +55,9 @@ const postAsync = async <TResponse, TRequest>(
     body: JSON.stringify(request),
   });
 
+  if (response.status !== 200)
+    document.location.href = `error/${response.status}`;
+
   return (await response.json()) as TResponse;
 };
 
@@ -73,6 +80,9 @@ const deleteAsync = async <TResponse>(
       "Access-Control-Allow-Origin": origin,
     },
   });
+
+  if (response.status !== 200)
+    document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
 };
