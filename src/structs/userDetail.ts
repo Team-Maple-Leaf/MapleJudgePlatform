@@ -52,6 +52,10 @@ export class userDetail {
     return "Bearer " + (this.jwt ?? "");
   }
 
+  getRefreshToken(): string {
+    return this.refreshToken ?? "";
+  }
+
   /**
    * 값을 업데이트 합니다.
    * @param props 업데이트 대상 props.

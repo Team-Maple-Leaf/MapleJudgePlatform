@@ -19,9 +19,13 @@ const getAsync = async <TResponse>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Access-Control-Allow-Origin": origin,
     },
   });
+
+  if (response.status >= 400 && response.status <= 599)
+    document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
 };
@@ -43,11 +47,15 @@ const postAsync = async <TResponse, TRequest>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Content-Type": "application/json",
       "Access-Control-Allow-Origin": origin,
     },
     body: JSON.stringify(request),
   });
+
+  if (response.status >= 400 && response.status <= 599)
+    document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
 };
@@ -67,9 +75,13 @@ const deleteAsync = async <TResponse>(
     mode: "cors",
     headers: {
       Authorization: user?.getAuth() ?? "",
+      refreshToken: user?.getRefreshToken() ?? "",
       "Access-Control-Allow-Origin": origin,
     },
   });
+
+  if (response.status >= 400 && response.status <= 599)
+    document.location.href = `error/${response.status}`;
 
   return (await response.json()) as TResponse;
 };
