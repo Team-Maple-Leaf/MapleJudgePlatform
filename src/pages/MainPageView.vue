@@ -37,7 +37,7 @@
     <v-responsive class="align-center mx-auto" height="100%" width="100%">
       <h1>Architecture</h1>
       <v-col />
-      <v-img src="./mainPageView/sub-screen.png" :aspect-ratio="12 / 5" />
+      <v-img src="./mainPageView/architecture.png" :aspect-ratio="12 / 5" />
       <v-col /><v-col />
     </v-responsive>
   </v-container>
@@ -89,26 +89,16 @@
           v-for="developer in developers"
           :key="developer.id"
         >
-          <v-card elevation="0">
-            <v-list class="transparent">
-              <v-list-item horizontal>
-                <v-avatar
-                  class="profile"
-                  size="90"
-                  max-height="90"
-                  avatar-border-radius="80%"
-                >
-                  <a :href="developer.github">
-                    <img
-                      :src="developer.github + '.png'"
-                      width="100"
-                      height="100"
-                    />
-                  </a>
-                </v-avatar>
-              </v-list-item>
-            </v-list>
-          </v-card>
+          <v-avatar
+            class="profile"
+            size="90"
+            max-height="90"
+            avatar-border-radius="80%"
+          >
+            <a :href="developer.github">
+              <img :src="developer.github + '.png'" width="100" height="100" />
+            </a>
+          </v-avatar>
         </v-col>
       </v-row>
     </v-responsive>
@@ -119,23 +109,19 @@
 const pages = [
   {
     id: 0,
-    src: "./mainPageView/sub-screen.png",
+    src: "./mainPageView/feature-ProblemSetView.png",
     content: "다양한 종류의 알고리즘 문제를 풀어볼 수 있습니다.",
   },
   {
     id: 1,
-    src: "./mainPageView/sub-screen.png",
-    content: "알고리즘 문제를 풀어 정답 여부를 판단할 수 있습니다.",
+    src: "./mainPageView/feature-ProblemSubmitView.png",
+    content: "여러 종류의 언어로 알고리즘 문제를 풀어볼 수 있습니다.",
   },
   {
     id: 2,
-    src: "./mainPageView/sub-screen.png",
-    content: "정답이 아닐 때 정답이 아닌 이유를 보여줍니다.",
-  },
-  {
-    id: 3,
-    src: "./mainPageView/sub-screen.png",
-    content: "개인 계정에서 자신이 풀어본 문제를 확인할 수 있습니다.",
+    src: "./mainPageView/feature-ProblemResultView.png",
+    content:
+      "답의 정답 여부를 판단하며, 정답이 아닐 때 아닌 이유를 보여줍니다.",
   },
 ];
 
@@ -194,6 +180,10 @@ const serverImgs = [
   {
     id: 6,
     src: "./mainPageView/rust-logo.png",
+  },
+  {
+    id: 7,
+    src: "./mainPageView/rabbitmq-logo.png",
   },
 ];
 
